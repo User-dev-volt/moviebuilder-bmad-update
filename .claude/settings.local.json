@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(move:*)",
+      "Bash(cmd /c move:*)",
+      "Bash(cmd /c del \"E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\\\\_bmad\\\\cpm\\\\agents\\\\cinematographer.agent.md\")",
+      "Bash(powershell -Command \"Remove-Item -Path ''E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\\\\_bmad\\\\cpm\\\\agents\\\\cinematographer.agent.md'' -Force\")",
+      "Bash(copy:*)",
+      "Bash(Get-ChildItem -Recurse -Path \"E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\\\\_bmad\\\\cpm\\\\workflows\\\\new-project\")",
+      "Bash(Select-Object FullName, Length)",
+      "Bash(Get-ChildItem -Path \"E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\\\\_bmad\\\\cpm\\\\workflows\\\\show-bible\" -Recurse)",
+      "Bash(if not exist \"E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\\\\_bmad-output\\\\bmb-creations\\\\workflows\\\\style-guide\" mkdir \"E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\\\\_bmad-output\\\\bmb-creations\\\\workflows\\\\style-guide\")",
+      "Bash(powershell -Command:*)",
+      "Bash(python3:*)",
+      "Bash(node -e:*)",
+      "Bash(cmd /c \"dir \"\"E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\"\" /b /a\")",
+      "Bash(cmd /c \"dir /b /a \"\"E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\"\"\")",
+      "Bash(New-Item -ItemType File -Path \"E:\\\\Obsidian Brain\\\\Brain\\\\10_Active_Projects\\\\moviebuilder\\\\_bmad-output\\\\cpm-projects\\\\The Second Receipt\\\\Bible\\\\Characters\\\\_index.md\" -Force)",
+      "Bash(Out-Null)",
+      "Bash(Write-Output \"created\")",
+      "Bash(ls)"
+    ]
+  }
+}

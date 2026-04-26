@@ -1,0 +1,18 @@
+# CPM Module Configuration
+# Cinematic Production Module — "Cinematics as Code"
+# Version: 0.1.0
+# Date: 2026-02-17
+
+# Core Configuration Values
+user_name: Alec
+communication_language: English
+document_output_language: English
+output_folder: "{project-root}/_bmad-output"
+
+# CPM Project Configuration
+project_name: ""
+cpm_output_folder: "{project-root}/_bmad-output/cpm-projects"
+
+# CPM Domain Settings
+model_target: "wan"
+default_shard_duration: 5

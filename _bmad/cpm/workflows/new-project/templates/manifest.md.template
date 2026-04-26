@@ -1,0 +1,43 @@
+# Project Manifest
+## {{project_name}}
+
+**Created:** {{date}}
+**Model Target:** {{model_target}}
+
+---
+
+### Active Scene Context
+
+- **Current Scene:** (not started)
+- **Current Shard:** (not started)
+- **Characters On Camera:** []
+
+### Required Files for Current Context
+
+(Will be populated when production begins)
+
+### Project Status
+
+- [ ] Show Bible created
+- [ ] Style Guide created
+- [ ] Characters defined
+- [ ] Scenes defined (run `/cpm-scene-create` for each scene)
+- [ ] First shard generated
+
+---
+
+### Scenes
+
+<!-- scene-create updates this section automatically -->
+
+---
+
+### Quick Commands
+
+| Command | Action |
+|---------|--------|
+| `/cpm-show-bible` | Create your Show Bible |
+| `/cpm-style-guide` | Define visual style |
+| `/cpm-character-create` | Add a character |
+| `/cpm-scene-create` | Define a scene's beats |
+| `/cpm-shard-generation` | Generate video prompts |
