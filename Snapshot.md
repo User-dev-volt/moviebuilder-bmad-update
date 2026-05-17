@@ -26,12 +26,7 @@ Fix A + Fix B still pending (minor, can do anytime)
 ---
 
 ## Next Action
-
-> The single, specific, physical next step for THIS project.
-
-```
-Run /cpm-shard-generation for Scene 01, Shard 2 "The Metronome". Entry contract is locked: same sedan interior, same #5B8DD9 uplight, LEFT wrist rotating up to reveal smartwatch, RIGHT gloved finger descending to tap the glass. Exit state for Shard 1 is saved and ready.
-```
+- Decide whether to delete ~30 stale `.md` files in `.claude/commands/` and `.gemini/commands/` (flagged as duplicates of new skills format)
 
 ---
 
