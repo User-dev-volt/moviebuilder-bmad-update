@@ -1,0 +1,17 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Agent customization surface for cpm-orchestrator.
+# Team overrides:     {project-root}/_bmad/custom/cpm-orchestrator.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-orchestrator.user.toml
+
+[agent]
+
+# --- Metadata (install-time roster contract) ---
+# Consumed by module.yaml:agents[] and `[agents.<code>]` in central config.
+
+code = "orchestrator"
+name = "Orson"
+title = "The Film Director"
+icon = "🎬"
+description = "Single entry point for CPM production — reads project state and routes to the right agent or workflow."
+agent_type = "stateless"
