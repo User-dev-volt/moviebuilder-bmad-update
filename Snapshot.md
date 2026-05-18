@@ -26,7 +26,7 @@ Fix A + Fix B still pending (minor, can do anytime)
 ---
 
 ## Next Action
-- Decide whether to delete ~30 stale `.md` files in `.claude/commands/` and `.gemini/commands/` (flagged as duplicates of new skills format)
+Co-author the project-intent document for `moviebuilder - BMAD MODULE Update` that specifies: (1) what CPM module is being rebuilt from design specs, (2) build sequence (character-create first, then scene-create), (3) what gets registered back into manifests on completion
 
 ---
 
