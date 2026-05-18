@@ -2,6 +2,22 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Resume Protocol
+
+**Trigger:** User says "Resume", "Pick up here", or "What's next on CPM?"
+
+**Execute — read ONLY this file, nothing from the Brain OS:**
+
+1. Read `Snapshot.md` in this folder
+2. Report back:
+   - **Next Action** (exact next step)
+   - **Open Loops** (the build checklist — what's checked, what's not)
+   - **Mental RAM** (key context from the RAM section)
+
+Do NOT read `00_Meta/SOUL`, `00_Meta/MEMORY`, `00_Meta/Game_Save`, or any other Brain OS files. This is a project-scoped resume, not a full Brain boot.
+
+---
+
 ## Project Overview
 
 This is a BMAD (Build My Agent Design) installation - a framework for creating AI agents, workflows, and modules. Version 6.0.0-Beta.5 with four installed modules:
