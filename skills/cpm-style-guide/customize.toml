@@ -1,0 +1,57 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for cpm-style-guide.
+# Team overrides:     {project-root}/_bmad/custom/cpm-style-guide.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-style-guide.user.toml
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • arrays (persistent_facts, activation_steps_*): append
+#   arrays-of-tables with `code`/`id`: replace matching items, append new ones.
+
+# Steps to run before the standard activation (config load, route).
+# Overrides append. Use for pre-flight loads, compliance checks, etc.
+
+activation_steps_prepend = []
+
+# Steps to run after activation but before intent routing.
+# Overrides append. Use for context-heavy setup.
+
+activation_steps_append = []
+
+# Persistent facts the workflow keeps in mind for the whole run
+# (standards, conventions, guardrails). Overrides append.
+# Each entry is either a literal sentence or a `file:` reference.
+
+persistent_facts = []
+
+# Items executed when the workflow reaches its terminal stage, after the
+# style guide has been delivered. Override wins. Empty = no custom behavior.
+
+on_complete = []
+
+# --- Workflow-specific configurables ---
+#
+# The four templates the workflow renders into the project's Architecture/ folder,
+# and the default base folder used as a fallback when no production project is
+# detected. Bare paths resolve from the skill root; {project-root}/... points at a
+# project-scope location. Override wins.
+
+# Template for Architecture/Style_Guide.md (the master visual law: identity,
+# lighting protocol, color palette, camera language, spatial rules).
+style_guide_template = "assets/style-guide-template.md"
+
+# Template for Architecture/Palette.md (the agent-facing extract: exact hex codes).
+palette_template = "assets/palette-template.md"
+
+# Template for Architecture/Lens_Language.md (the agent-facing extract: lens specs).
+lens_language_template = "assets/lens-language-template.md"
+
+# Template for Architecture/Vocabulary.md (the agent-facing extract: banned and
+# required prompt words).
+vocabulary_template = "assets/vocabulary-template.md"
+
+# Fallback base folder when no scaffolded production project is detected. The
+# production name is joined to this, and the four files land in its Architecture/.
+default_project_path = "{project-root}/_bmad-output/cpm-projects"
