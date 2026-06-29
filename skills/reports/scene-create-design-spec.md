@@ -552,3 +552,22 @@ The built workflow is **done** when:
   wan`, but the plan's config enum is `sora/kling/runway/pika`. Not blocking for scene-create
   (it doesn't read model target), but flag for `cpm-new-project`/config so the enum and real
   data agree.
+
+---
+
+## 16. Resolutions — DECIDED 2026-06-29 (supersede any stale text above)
+
+**Format correction (this spec predates the locked workflow format).** Build `cpm-scene-create` exactly like the foundation workflows #6–#9: a single inline **`SKILL.md`** with **create / update / validate** intent modes — **NOT** the `steps-c/e/v` folders or `stepsCompleted` frontmatter described in §9/§14 — plus `customize.toml [workflow]`, `references/scene-brief-contract.md` (the R1 authority doc), `assets/` templates (`scene-brief.template.md`, `entry-contract.template.md`, the two `data/` guides), `scripts/validate_scene_brief.py` + `scripts/tests/`, and a runtime **memlog** beside the artifact for resume. The generated `scene-brief.md` **drops** the V1 `stepsCompleted`/`lastStep` frontmatter (R4 — build jargon in a shipped artifact); resume uses the memlog, mirroring #7–#9. Mirror the pattern-setter `skills/cpm-new-project` and apply R1–R6.
+
+**Open-question outcomes:**
+- **O1 — Manifest writer:** ✅ scene-create writes the bounded `### Scenes` block + the `Scenes defined` Project-Status checkbox; Active Scene Context stays with the Script Supervisor/Orchestrator. (Already pinned; #6's manifest skeleton carries the `<!-- scene-create updates this section automatically -->` marker.)
+- **O2 — entry_contract in Memory Contract:** ✅ add the row — **writer:** cpm-scene-create (seed) + Script Supervisor (updates); **readers:** Script Supervisor, Prompt Engineer (at Shard 1). Filename `entry_contract.md`.
+- **O3 — Beat⇄Shard cardinality:** ✅ **1 beat = 1 shard.** Duration (5/15/30s) scales choreography *inside* the single shard; the integer Beat column stays the deterministic join key for `{currentBeat}` (Fix C2).
+- **O4 — Output location:** ✅ `skills/cpm-scene-create/`.
+- **O5 — Scene status:** ✅ enum `ready → in-progress → complete`; scene-create finalizes a brief to `ready`; shard-generation owns `in-progress`/`complete`; `not-started` dropped.
+- **O6 — Continuity Carry-Out:** ✅ **optional** scene-level intent note; the authoritative carry-out is the last shard's exit state.
+- **O7 — entry_contract for later scenes:** ✅ **seed from the prior scene's last exit-state if present, else write an explicit gap-marked stub** ("unresolved — Script Supervisor fills before Shard 1") that Validate flags; non-blocking, never a silent hollow handoff. Scene 01 derives from character initial state.
+- **O8 — on_camera_characters:** ✅ plain names resolving to `Bible/Characters/{Name}.md`; asset ID captured in `entry_contract.md`. (Drops Scene_02's `ELIAS_V1`.)
+- **O9 — model_target:** ✅ non-issue — #6's config treats `model.target` as an open string (sora/kling/runway/pika + any id), so `wan` is valid. (Optional polish: add `wan` to the documented options comment in #6's config template.)
+
+**Validate gate (§9.4) stands as specified** — the four-way equality (`shard_count == Beat-Table rows == Beat-Detail blocks == max(Beat)`), contiguous integer Beat column, exactly the 4 columns, table↔detail 1:1, character-file resolution, and the anti-vagueness Primary-Requirement check — with structure checks 1–6 & 9 in `validate_scene_brief.py` and 7–8 (specificity/theme) judged by the prompt. This is the R3 deterministic gate, exactly the split used by the check scripts in #7–#9.
