@@ -3,7 +3,7 @@
 **Date:** 2026-06-28
 **Author:** Claude (Opus 4.8) — derived from the Ultracode comprehensiveness assessment + the existing `module-plan-cpm-v2.md`
 **Status of CPM today:** Designed and planned, **not built** (~12% of a real module). One of 13 skills exists.
-**Build platform:** BMB **v2.1.0** (installed 2026-06-28), BMAD Core **v6.9.0**, bmm **6.9.0**.
+**Build platform:** BMB **v2.1.0** (installed 2026-06-28), BMAD Core **v6.9.0**. (`bmm` was removed per decision — install is core + bmb + future cpm.)
 
 ---
 
@@ -120,11 +120,21 @@ Total: a real module build, but **de-risked** — design done, personas written,
 
 ---
 
-## 7. Decisions for you
+## 7. Decisions (resolved 2026-06-29)
 
-1. **Build execution** — do you want me to **drive the v2 builders skill-by-skill** (run Agent Builder / Workflow Builder for #2 onward, you review each), produce the **scene-create design spec** that's currently missing, or keep this as plan-only for now?
-2. **`cpm-inception` scope** — keep it as the #13 capstone (recommended), or cut it from V2 to ship the core loop faster?
-3. **`bmm` module** — the BMB update added BMad Method (51 skills total now). Keep it (standard, useful for PRD/architecture/story work) or remove it to keep the install lean and CPM-focused?
+1. **Build execution** — ⏸ **Plan only this session.** Resume building next session.
+2. **`cpm-inception` scope** — ✅ **Keep as the #13 capstone** (per the plan's roadmap).
+3. **`bmm` module** — ✅ **Removed.** Install is now `core` + `bmb` (+ future `cpm`); skills 51 → 18. (commit `866914b`)
+
+## ▶ Resume here next session
+
+**Start at the build backlog (§3), skill #2 — `cpm-showrunner` (Albus).**
+
+1. Apply the P0 resets first (U2 void false records, U3 descope dead inception route, U5 fix CLAUDE.md) — small, clears the false "shipped" signal.
+2. Confirm the v2 agent file format against `_bmad/bmb/agents/*.md` (U6).
+3. Build `cpm-showrunner` via the **Agent Builder** (`bmad-agent-builder`), passing `skills/reports/module-plan-cpm-v2.md` §`cpm-showrunner` as the brief, with `'The Second Receipt'/.cpm/agents/showrunner.md` as source.
+4. Then continue down §3 in order. **Early flag:** #10 `cpm-scene-create` needs a design spec authored first (none exists) — do that before the core loop (#11).
+5. When all 13 skills exist → **Create Module (CM)** → **Validate Module (VM)** + 3-pass handshake on Test Scene 8.
 
 ---
 
