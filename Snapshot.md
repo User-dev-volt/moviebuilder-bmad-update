@@ -20,13 +20,13 @@ CPM V2 rebuild on BMB v2.1.0 / Core v6.9.0. Agents are STATELESS lean SKILL.md s
 AGENT LAYER COMPLETE ✓ — all 5 agents built + 5-lens adversarially verified + fixed + re-verified:
 Orson (orchestrator), Albus (showrunner), Galadriel (cinematographer),
 Jonas (script-supervisor), Leonard (prompt-engineer) — all in skills/.
-Foundation workflows #6–#9 DONE ✓ (built + adversarially verified + hardened). Next: #10 cpm-scene-create (resolve O1–O9 first) → #11–#13.
+Foundation workflows #6–#9 DONE ✓. Workflow #10 cpm-scene-create DONE ✓ (built + 4-lens adversarial verify + fix + round-trip, 2026-06-29). Next: #11 cpm-shard-generation (the core loop) → #12–#13.
 ```
 
 ---
 
 ## Next Action
-**Foundation workflows #6–#9 are DONE** (built + adversarially verified + hardened, 2026-06-29 — see Session History). Next: **build #10 `cpm-scene-create`**. Its 9 design questions **O1–O9 are RESOLVED** (2026-06-29 — see `skills/reports/scene-create-design-spec.md` §16; key calls: **1 beat = 1 shard**, scene-create owns the manifest `### Scenes` block, entry_contract = seed-else-explicit-marked-stub, scene status finalizes to `ready`, Continuity Carry-Out optional, plain character names). **Build it directly, inline-SKILL.md like #6–#9** (the spec's §9/§14 `steps-c/e/v` are STALE — §16 supersedes), before the core loop #11 `cpm-shard-generation`. Mirror the validated pattern-setter `skills/cpm-new-project` and apply R1–R6. Format proven across 4 skills; no re-scout needed.
+**Workflows #6–#10 are DONE** (built + adversarially verified, 2026-06-29 — see Session History). Next: **build #11 `cpm-shard-generation`** — the core production loop (the Four-Agent Ritual). It applies **Fix C2**: load `scene-brief.md` and extract `{currentBeat}` by integer from the Beat Table that #10 now produces (**1 beat = 1 shard**), then run **variable intervals** (5/15/30s choreography inside a single shard). It drives the Showrunner (Albus, beat definition) plus the other three agents and writes `shard_{N}_exit_state.md`. Build it inline-SKILL.md like #6–#10; mirror the pattern-setter `skills/cpm-new-project` and apply R1–R6. Read `skills/reports/module-plan-cpm-v2.md` §cpm-shard-generation + the proven V1 ritual in `_bmad-output/cpm-projects/The Second Receipt/` (Scene_01 Shard_1 prompt + `state/shard_1_exit_state.md`). The upstream contract is #10's Beat Table schema + `skills/cpm-scene-create/scripts/validate_scene_brief.py`. Format proven across 5 skills; no re-scout needed.
 
 ---
 
@@ -96,8 +96,8 @@ Foundation workflows #6–#9 DONE ✓ (built + adversarially verified + hardened
 - [x] cpm-show-bible (#7) ✓ — built + 3-lens verify + hardened (2026-06-29)
 - [x] cpm-style-guide (#8 — Fix A applied as natural in-world instruction) ✓ (2026-06-29)
 - [x] cpm-character-create (#9 — Fix B applied; template-boilerplate laterality false-PASS caught & fixed) ✓ (2026-06-29)
-- [ ] cpm-scene-create (#10 — design spec READY + **O1–O9 RESOLVED** (spec §16); build inline-SKILL.md like #6–#9) ← NEXT
-- [ ] cpm-shard-generation (#11 — apply Fix C2 + variable intervals; the core loop)
+- [x] cpm-scene-create (#10) ✓ — built + 4-lens adversarial verify + fix + round-trip (Scene_01 6 beats / Scene_02 3 beats both PASS); `validate_scene_brief.py` four-way-equality gate; 17 tests; lint-green; committed `bd85372` (2026-06-29)
+- [ ] cpm-shard-generation (#11 — apply Fix C2 + variable intervals; the core loop) ← NEXT
 - [ ] cpm-handshake-test (#12)
 - [ ] cpm-inception (#13 — build last — wraps #6–#9)
 
@@ -133,6 +133,7 @@ Foundation workflows #6–#9 DONE ✓ (built + adversarially verified + hardened
 
 | Date | What I Did | Where I Left Off |
 |------|------------|------------------|
+| 2026-06-29 | **Workflow #10 `cpm-scene-create` built + adversarially verified + committed** (`bd85372`) via Workflow orchestration (build core → wire SKILL → 4-lens verify → fix → final gate). 9 files mirroring #6–#9 (first skill with a `data/` guides folder); `validate_scene_brief.py` enforces the four-way equality (`shard_count == Beat-Table rows == Beat-Detail blocks == max(Beat)`) + contiguous Beat column; 17 tests green. Round-trip: canonical Scene_01 (6 beats) + Scene_02 (3 beats, O7 gap non-blocking) PASS; gate correctly HOLDs the untouched V1 proven brief. scene-create is the first workflow to write the manifest `### Scenes` block + Slate `## Scenes` table. | Build #11 `cpm-shard-generation` (core loop; Fix C2 + variable intervals) |
 | 2026-06-29 | **Foundation workflows #6–#9 built + adversarially verified + hardened** via Workflow orchestration: set the locked v2 pattern on #6 `cpm-new-project` (build → 4-lens verify → I hardened it: fallback in all 3 modes, `.gitkeep` durability, R4 "CPM V2"→"CPM" diagram fix, dropped build-time `.memlog.md`), then fanned out #7–#9 (build → 3-lens verify → fix) + a harden pass. All 4 lint-green, 35 unit tests, each independently re-verified ALL GREEN. Verify caught bugs lint can't: laterality template-boilerplate false-PASS, a non-existent `memlog set-complete` call, placeholder-hollow false-PASS. | Build #10 `cpm-scene-create` — resolve O1–O9 first; then #11–#13 |
 | 2026-06-29 | **P0 resets** (voided 2 false records, descoped dead inception route, fixed CLAUDE.md for v2). Built the full **AGENT LAYER** — Albus/showrunner, Galadriel/cinematographer, Jonas/script-supervisor, Leonard/prompt-engineer — via 2 Workflow runs (build + 5-lens adversarial verify), fixed every high/medium finding, re-verified the 3 highs RESOLVED. Wrote the **cpm-scene-create design spec**. | Build foundation workflows #6–#9 (Workflow Builder); resolve scene-create O1–O9; then #10–#13 |
 | 2026-05-18 | CPM V2: BMB ideation complete, module plan written, methodology diagram rendered (excalidraw renderer fixed x3 bugs), cpm-orchestrator (Orson) built + linted ✓ | Build cpm-showrunner next |
@@ -164,7 +165,7 @@ Foundation workflows #6–#9 DONE ✓ (built + adversarially verified + hardened
   - Module plan (source of truth): `skills/reports/module-plan-cpm-v2.md`
   - Build plan / backlog: `_bmad-output/cpm-build-plan-2026-06-28.md`
   - scene-create design spec: `skills/reports/scene-create-design-spec.md`
-- **NOTE:** there is NO `_bmad/cpm/` module yet — it is created later by Create Module (CM). The old `.claude/commands/cpm-*.md` stubs are vestigial (see CLAUDE.md caveat). The 8 workflows are NOT built yet.
+- **NOTE:** there is NO `_bmad/cpm/` module yet — it is created later by Create Module (CM). The old `.claude/commands/cpm-*.md` stubs are vestigial (see CLAUDE.md caveat). 5 of 8 workflows are built (#6–#10); #11–#13 pending.
 - **Test Project:** `_bmad-output/cpm-projects/The Second Receipt/`
   - Scene 01: `Production/Scenes/Scene_01/scene-brief.md`
 - **Related Notes:**
@@ -181,7 +182,7 @@ Foundation workflows #6–#9 DONE ✓ (built + adversarially verified + hardened
 > Reset 2026-06-29 to V2 reality (the old all-`[x]` list described the phantom `_bmad/cpm/` that was never built).
 - [x] Module plan written (`skills/reports/module-plan-cpm-v2.md`)
 - [x] Agent layer: all 5 agents built + 5-lens adversarially verified (2026-06-29)
-- [ ] 8 workflows built (#6–#13) — NEXT
+- [ ] 8 workflows built (#6–#13) — 5/8 done (#6–#10); NEXT is #11
 - [ ] Module packaged via Create Module (module.yaml, module-help.csv, cpm-setup, manifest registration)
 - [ ] Module validated via Validate Module (validate-module.py + LLM quality pass)
 - [ ] Real handshake: Test Scene 8 generates with 3 consecutive passes = CPM VALIDATED
