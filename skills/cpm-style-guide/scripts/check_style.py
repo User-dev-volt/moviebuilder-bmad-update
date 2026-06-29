@@ -8,9 +8,10 @@ Grades the four files a production's visual law lives in, under the project's
 Architecture/ folder: Style_Guide.md, Palette.md, Lens_Language.md, Vocabulary.md.
 It checks only what a structure check can know for certain — each file present,
 each required section present, the palette carrying exact hex codes (not vague color
-names), and the vocabulary carrying BOTH a banned list and a required list. Hex
-codes and the banned list are graded at the same hardness: either one missing is a
-hold. All substance judgment — every color carrying a hex, every banned word
+names), and the vocabulary carrying BOTH a banned list and a required list. A list
+whose only rows are raw {placeholder} template tokens counts as empty, so an untouched
+template never satisfies the gate. Hex codes and the banned list are graded at the same
+hardness: either one missing is a hold. All substance judgment — every color carrying a hex, every banned word
 justified, choices tracing to the Show Bible — stays in the prompt that calls this.
 
 Read-only: writes nothing. Output is one JSON object on stdout.
@@ -40,6 +41,11 @@ REQUIRED_FILES = list(REQUIRED_SECTIONS)
 HEX_RE = re.compile(r"#[0-9A-Fa-f]{6}")
 # A markdown table separator row: only pipes, dashes, colons, spaces.
 SEPARATOR_RE = re.compile(r"^\s*\|[\s|:-]+\|?\s*$")
+# A cell that is wholly a {placeholder} token is raw template scaffolding, not an
+# authored value; a bullet whose value (after an optional bold label) is such a token
+# is an unfilled slot. A list whose only entries are these counts as empty.
+PLACEHOLDER_CELL_RE = re.compile(r"^\{.*\}$")
+PLACEHOLDER_BULLET_RE = re.compile(r"^\s*[-*]\s+(?:\*\*[^\n]+?:\*\*\s*)?\{[^\n]*\}\s*$")
 
 
 def err(message: str) -> dict:
@@ -66,14 +72,27 @@ def section_body(text: str, keyword: str) -> str | None:
     return "\n".join(lines[start:end])
 
 
+def _placeholder_row(line: str) -> bool:
+    """True when a table row's every non-empty cell is a bare {placeholder} token — a raw
+    template row (| {banned word} | {what it drifts to} | {...} |), not an authored entry."""
+    cells = [c.strip() for c in line.split("|")]
+    cells = [c for c in cells if c]
+    return bool(cells) and all(PLACEHOLDER_CELL_RE.match(c) for c in cells)
+
+
 def has_entries(body: str) -> bool:
-    """True when a section body carries at least one real entry — a table data row
-    (a pipe row that is not the header separator) or a list bullet."""
+    """True when a section body carries at least one real, authored entry — a table data
+    row or a list bullet. Rows and bullets that are only {placeholder} tokens are raw
+    template scaffolding and are skipped, so an untouched template never satisfies a list
+    gate (mirrors the placeholder rigor in check_character.py)."""
     pipe_rows = [ln for ln in body.splitlines()
-                 if ln.lstrip().startswith("|") and not SEPARATOR_RE.match(ln)]
-    if len(pipe_rows) >= 2:  # a header row plus at least one data row
+                 if ln.lstrip().startswith("|")
+                 and not SEPARATOR_RE.match(ln)
+                 and not _placeholder_row(ln)]
+    if len(pipe_rows) >= 2:  # a header row plus at least one authored data row
         return True
-    return any(re.match(r"^\s*[-*] ", ln) for ln in body.splitlines())
+    return any(re.match(r"^\s*[-*] ", ln) and not PLACEHOLDER_BULLET_RE.match(ln)
+               for ln in body.splitlines())
 
 
 def check(project_path: Path) -> tuple[dict, int]:

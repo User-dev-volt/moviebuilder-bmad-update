@@ -12,9 +12,13 @@ is GOOD — that substance call (is the logline sharp? do the pillars actually
 constrain a beat?) stays in the prompt that calls this. Structure here, judgment
 there; neither leaks into the other.
 
-"Real content" is any non-blank line that is not a heading and not a bare
-`{placeholder}` token left unfilled from the template. HTML comments are stripped
-before the scan, so a section that is only template guidance counts as empty.
+"Real content" is any non-blank, non-heading line that still carries authored
+text once its template scaffolding is stripped — leading list markers, bold
+labels, and table pipes removed, then every `{placeholder}` token deleted. A line
+that is only a label plus unfilled placeholders (e.g. `- **Primary Genre:** {genre}`
+or `1. **{Pillar name}:** {tension}`) collapses to nothing and counts as empty, so
+a section filled with verbatim template lines does not false-pass. HTML comments are
+stripped before the scan, so a section that is only template guidance counts as empty.
 
 Output: one JSON object on stdout.
 Exit codes: 0 = pass; 1 = hold (sections missing or empty); 2 = usage or
@@ -40,7 +44,12 @@ REQUIRED_SECTIONS = [
 ]
 
 COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
-BARE_PLACEHOLDER_RE = re.compile(r"^\{[^{}]*\}$")
+# A {placeholder} token left unfilled from the template, anywhere on a line.
+PLACEHOLDER_TOKEN_RE = re.compile(r"\{[^{}]*\}")
+# A leading list marker: -, *, + or an ordered marker like "1." / "2)".
+LIST_MARKER_RE = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
+# A bold label ending in a colon, e.g. **Primary Genre:** or **{Pillar name}:**.
+BOLD_LABEL_RE = re.compile(r"\*\*[^*]+?:\*\*")
 
 
 def err(message: str) -> dict:
@@ -69,16 +78,35 @@ def split_sections(text: str) -> dict[str, list[str]]:
     return sections
 
 
+def is_unfilled(line: str) -> bool:
+    """True when a line carries no authored value — only template scaffolding.
+
+    Strips the leading list marker, any bold label (**...:**), and table pipes,
+    then deletes every {placeholder} token. If nothing but punctuation survives
+    (no letter or digit remains), the line was never filled in. This is what stops
+    a label-embedded placeholder such as '- **Primary Genre:** {genre}' or
+    '1. **{Pillar name}:** {tension}' from reading as real content — the old
+    whole-line check only caught a placeholder that was alone on its line.
+    """
+    residual = LIST_MARKER_RE.sub("", line)
+    residual = BOLD_LABEL_RE.sub("", residual)
+    residual = residual.replace("|", "")
+    residual = PLACEHOLDER_TOKEN_RE.sub("", residual)
+    return not any(ch.isalnum() for ch in residual)
+
+
 def has_real_content(body: list[str]) -> bool:
-    """True if any line is genuine content — non-blank, not a heading, and not a
-    lone unfilled {placeholder}. List items, table rows, and prose all count."""
+    """True if any line carries genuine authored content — non-blank, not a
+    heading, and not a line that is only template scaffolding plus unfilled
+    {placeholder} tokens. Prose, list items, and table rows all count once a
+    real value is present."""
     for line in body:
         stripped = line.strip()
         if not stripped:
             continue
         if stripped.startswith("#"):
             continue
-        if BARE_PLACEHOLDER_RE.match(stripped):
+        if is_unfilled(stripped):
             continue
         return True
     return False

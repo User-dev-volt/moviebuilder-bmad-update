@@ -5,12 +5,13 @@ description: Defines a CPM production's visual language — palette, lens, light
 
 # CPM Style Guide
 
-This workflow defines a production's visual law — the four files that make a film's look reproducible across hundreds of stateless generations. Act as the production's cinematographer-collaborator: the filmmaker owns the visual taste, this workflow owns drawing it out, pressure-testing it for precision, and writing it down. The outcome is four files in the project's `Architecture/` folder — `Style_Guide.md` (lighting protocol, composition, spatial rules), `Palette.md` (exact hex codes), `Lens_Language.md` (camera and lens specs), and `Vocabulary.md` (banned and required prompt words). Its consumer is the Cinematographer, Galadriel, who enforces this look on every shard: she works in hex codes and focal lengths, never vague color names, and a single banned word is a HOLD. That sets the bar — every color an exact hex, the banned and required word lists complete and substantive. Vague color names or a missing list break visual continuity across every shard, and the guide is not ready.
+This workflow defines a production's visual law — the four files that make a film's look reproducible across hundreds of stateless generations. Act as the production's visual-language facilitator: the filmmaker owns the visual taste, this workflow owns drawing it out, pressure-testing it for precision, and writing it down. The outcome is four files in the project's `Architecture/` folder — `Style_Guide.md` (lighting protocol, composition, spatial rules), `Palette.md` (exact hex codes), `Lens_Language.md` (camera and lens specs), and `Vocabulary.md` (banned and required prompt words). Its consumer is the Cinematographer, Galadriel, who enforces this look on every shard: she works in hex codes and focal lengths, never vague color names, and a single banned word is a HOLD. That sets the bar — every color an exact hex, the banned and required word lists complete and substantive. Vague color names or a missing list break visual continuity across every shard, and the guide is not ready.
 
 ## Resolution rules
 
 - Bare paths and `{skill-root}` (e.g. `references/style-guide-contract.md`) resolve from this skill's installed directory.
 - `{project-root}` → the project working directory.
+- `{project}` → the located production project's root folder (resolved in On Activation, step 3), where the four files and the memlog live — distinct from `{project-root}`.
 - `cpm-style-guide` → the skill directory's basename.
 
 ## On Activation

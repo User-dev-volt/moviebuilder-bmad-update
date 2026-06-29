@@ -20,13 +20,13 @@ CPM V2 rebuild on BMB v2.1.0 / Core v6.9.0. Agents are STATELESS lean SKILL.md s
 AGENT LAYER COMPLETE ✓ — all 5 agents built + 5-lens adversarially verified + fixed + re-verified:
 Orson (orchestrator), Albus (showrunner), Galadriel (cinematographer),
 Jonas (script-supervisor), Leonard (prompt-engineer) — all in skills/.
-Next: the 8 workflows (#6 cpm-new-project → #13 cpm-inception). scene-create (#10) spec is written.
+Foundation workflows #6–#9 DONE ✓ (built + adversarially verified + hardened). Next: #10 cpm-scene-create (resolve O1–O9 first) → #11–#13.
 ```
 
 ---
 
 ## Next Action
-Build the foundation workflows via the Workflow Builder (`bmad-workflow-builder`), in plan order: #6 `cpm-new-project` → #7 `cpm-show-bible` → #8 `cpm-style-guide` (Fix A) → #9 `cpm-character-create` (Fix B). Each lifts its proven template from `_bmad-output/cpm-projects/The Second Receipt/`. Then #10 `cpm-scene-create` — its design spec is ready at `skills/reports/scene-create-design-spec.md`; **resolve its 9 open questions (O1–O9) first**, and build it before the core loop #11 `cpm-shard-generation`. Apply the six skill-quality pattern rules (R1–R6, see Mental RAM) to every workflow.
+**Foundation workflows #6–#9 are DONE** (built + adversarially verified + hardened, 2026-06-29 — see Session History). Next: build #10 `cpm-scene-create` — its design spec is ready at `skills/reports/scene-create-design-spec.md`; **resolve its 9 open questions (O1–O9) FIRST**, then build it before the core loop #11 `cpm-shard-generation`. Mirror the validated pattern-setter `skills/cpm-new-project` and apply R1–R6 (see Mental RAM). The locked workflow-skill format is proven across 4 skills now; no re-scout needed.
 
 ---
 
@@ -91,12 +91,12 @@ Build the foundation workflows via the Workflow Builder (`bmad-workflow-builder`
 - [x] cpm-script-supervisor (Jonas — Continuity Guardian) ✓ — `skills/cpm-script-supervisor/`
 - [x] cpm-prompt-engineer (Leonard Shelby — Prompt Compiler) ✓ — `skills/cpm-prompt-engineer/`
 
-### Phase 2: Workflows (build with bmad-workflow-builder) ← NEXT
-- [ ] cpm-new-project (#6)
-- [ ] cpm-show-bible (#7)
-- [ ] cpm-style-guide (#8 — apply Fix A)
-- [ ] cpm-character-create (#9 — apply Fix B)
-- [ ] cpm-scene-create (#10 — ⚠ design spec READY at `skills/reports/scene-create-design-spec.md`; resolve O1–O9 first)
+### Phase 2: Workflows (build with bmad-workflow-builder)
+- [x] cpm-new-project (#6) ✓ — pattern-setter; built + 4-lens adversarial verify + hardened (2026-06-29)
+- [x] cpm-show-bible (#7) ✓ — built + 3-lens verify + hardened (2026-06-29)
+- [x] cpm-style-guide (#8 — Fix A applied as natural in-world instruction) ✓ (2026-06-29)
+- [x] cpm-character-create (#9 — Fix B applied; template-boilerplate laterality false-PASS caught & fixed) ✓ (2026-06-29)
+- [ ] cpm-scene-create (#10 — ⚠ design spec READY at `skills/reports/scene-create-design-spec.md`; resolve O1–O9 first) ← NEXT
 - [ ] cpm-shard-generation (#11 — apply Fix C2 + variable intervals; the core loop)
 - [ ] cpm-handshake-test (#12)
 - [ ] cpm-inception (#13 — build last — wraps #6–#9)
@@ -133,6 +133,7 @@ Build the foundation workflows via the Workflow Builder (`bmad-workflow-builder`
 
 | Date | What I Did | Where I Left Off |
 |------|------------|------------------|
+| 2026-06-29 | **Foundation workflows #6–#9 built + adversarially verified + hardened** via Workflow orchestration: set the locked v2 pattern on #6 `cpm-new-project` (build → 4-lens verify → I hardened it: fallback in all 3 modes, `.gitkeep` durability, R4 "CPM V2"→"CPM" diagram fix, dropped build-time `.memlog.md`), then fanned out #7–#9 (build → 3-lens verify → fix) + a harden pass. All 4 lint-green, 35 unit tests, each independently re-verified ALL GREEN. Verify caught bugs lint can't: laterality template-boilerplate false-PASS, a non-existent `memlog set-complete` call, placeholder-hollow false-PASS. | Build #10 `cpm-scene-create` — resolve O1–O9 first; then #11–#13 |
 | 2026-06-29 | **P0 resets** (voided 2 false records, descoped dead inception route, fixed CLAUDE.md for v2). Built the full **AGENT LAYER** — Albus/showrunner, Galadriel/cinematographer, Jonas/script-supervisor, Leonard/prompt-engineer — via 2 Workflow runs (build + 5-lens adversarial verify), fixed every high/medium finding, re-verified the 3 highs RESOLVED. Wrote the **cpm-scene-create design spec**. | Build foundation workflows #6–#9 (Workflow Builder); resolve scene-create O1–O9; then #10–#13 |
 | 2026-05-18 | CPM V2: BMB ideation complete, module plan written, methodology diagram rendered (excalidraw renderer fixed x3 bugs), cpm-orchestrator (Orson) built + linted ✓ | Build cpm-showrunner next |
 | 2026-02-21 | Phase 4: /cpm-shard-generation ✓ — Scene 01 Shard 1 "The Asset Scan" generated; full 7-step ritual; State-Diff Gate passed; prompt + exit state saved | Scene 01, Shard 2 "The Metronome" |

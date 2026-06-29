@@ -18,6 +18,9 @@ SKILL_ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = SKILL_ROOT / "scripts" / "check_bible.py"
 PROVEN = (SKILL_ROOT.parents[1] / "_bmad-output" / "cpm-projects"
           / "The Second Receipt" / "Bible" / "Show_Bible.md")
+TEMPLATE = SKILL_ROOT / "assets" / "show-bible-template.md"
+REQUIRED = ["Logline", "Genre & Tone", "Thematic Pillars",
+            "World Rules", "Story Arc", "Recurring Motifs"]
 
 FULL_BIBLE = """\
 ---
@@ -125,6 +128,36 @@ class CheckBibleTests(unittest.TestCase):
             code, out = run("--bible", str(path))
             self.assertEqual(code, 1, out)
             self.assertIn("Logline", out["empty_sections"])
+
+    def test_label_embedded_placeholder_holds(self):
+        # Genre & Tone filled with verbatim template placeholders behind bold
+        # labels. A whole-line bare-placeholder check misses these (the label is
+        # real text); the strip-then-check must still mark the section empty.
+        with tempfile.TemporaryDirectory() as tmp:
+            text = FULL_BIBLE.replace(
+                "- **Primary Genre:** Speculative drama\n"
+                "- **Tone:** Cold dread thawing into grief. Begins clinical, ends elegiac.\n"
+                "- **Comparable Works:** *Solaris* meets *Arrival*.\n",
+                "- **Primary Genre:** {genre, and any blend}\n"
+                "- **Tone:** {the emotional register and how it MOVES across the piece}\n"
+                "- **Comparable Works:** {comparison that sharpens the experience}\n",
+            )
+            path = write_bible(tmp, text)
+            code, out = run("--bible", str(path))
+            self.assertEqual(code, 1, out)
+            self.assertEqual(out["status"], "hold")
+            self.assertIn("Genre & Tone", out["empty_sections"])
+
+    @unittest.skipUnless(TEMPLATE.is_file(), "show-bible template not present")
+    def test_template_is_all_placeholder_and_holds(self):
+        # The shipped template, copied verbatim, must hold on EVERY required
+        # section — otherwise a hollow Bible full of template placeholders
+        # (label-embedded across 4 of 6 sections) could false-pass.
+        code, out = run("--bible", str(TEMPLATE))
+        self.assertEqual(code, 1, out)
+        self.assertEqual(out["status"], "hold")
+        for section in REQUIRED:
+            self.assertIn(section, out["empty_sections"], out)
 
     def test_and_matches_ampersand(self):
         with tempfile.TemporaryDirectory() as tmp:

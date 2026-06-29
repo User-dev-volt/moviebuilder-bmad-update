@@ -16,6 +16,9 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = SKILL_ROOT / "scripts" / "check_style.py"
+# The shipped, untouched vocabulary template — its list rows are bare {placeholder}
+# tokens. A hollow guide built from it must not register its lists as filled.
+RAW_VOCABULARY_TEMPLATE = (SKILL_ROOT / "assets" / "vocabulary-template.md").read_text(encoding="utf-8")
 
 STYLE_GUIDE = """# Cinematic Style Guide — Test
 
@@ -226,6 +229,21 @@ class CheckStyleTests(unittest.TestCase):
             self.assertEqual(out["status"], "hold")
             self.assertFalse(out["vocabulary_required_list_ok"])
             self.assertTrue(out["vocabulary_banned_list_ok"])
+
+    def test_raw_vocabulary_template_holds(self):
+        # Placeholder rigor: the untouched vocabulary template — both lists are rows of
+        # bare {placeholder} tokens — must NOT register either list as filled. A guide
+        # with a real palette but raw vocabulary lists is still a HOLD.
+        with tempfile.TemporaryDirectory() as tmp:
+            project = Path(tmp) / "proj"
+            files = dict(COMPLETE)
+            files["Vocabulary.md"] = RAW_VOCABULARY_TEMPLATE
+            write_guide(project, files)
+            code, out = run(project)
+            self.assertEqual(code, 1, out)
+            self.assertEqual(out["status"], "hold")
+            self.assertFalse(out["vocabulary_banned_list_ok"], out)
+            self.assertFalse(out["vocabulary_required_list_ok"], out)
 
     def test_no_architecture_dir_is_error(self):
         with tempfile.TemporaryDirectory() as tmp:
