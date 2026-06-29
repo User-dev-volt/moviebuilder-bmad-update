@@ -15,10 +15,13 @@ stepsCompleted:
 targetLocation: _bmad/cpm/
 created: 2026-02-03
 completed: 2026-02-03
-status: COMPLETE
+status: VOID-NOT-BUILT
+voided: 2026-06-29
 ---
 
 # CPM Module Build Tracker
+
+> ⛔ **VOID — THIS RECORD IS FALSE.** This tracker claims a `cpm` module was built at `_bmad/cpm/` and finalized COMPLETE on 2026-02-03. **No such module was ever built — `_bmad/cpm/` does not exist.** Every "COMPLETE" below is a false "shipped" signal from an abandoned V1 effort; do not treat any status in this file as real. It is retained only as a historical trail. The actual build is tracked in `_bmad-output/cpm-build-plan-2026-06-28.md` — CPM is ~12% built (1 of 13 skills: `cpm-orchestrator`). _Voided 2026-06-29 per build-plan update U2._
 
 ## Module Summary
 

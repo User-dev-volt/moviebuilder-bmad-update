@@ -3,10 +3,13 @@ validationDate: 2026-02-03
 targetType: Full Module
 moduleCode: cpm
 targetPath: _bmad/cpm/
-status: PASSED
+status: INVALID-SUPERSEDED
+invalidated: 2026-06-29
 ---
 
 # CPM Module Validation Report
+
+> ⛔ **INVALID — SUPERSEDED.** This report claims the `cpm` module PASSED validation at 100% on 2026-02-03. **It "validated" a module (`_bmad/cpm/`) that never existed** — every PASS and the "100%" overall score are false. No genuine validation has ever run. The real definition-of-done is `_bmad-output/cpm-build-plan-2026-06-28.md` §5 (`validate-module.py` + LLM quality pass + 3 consecutive `cpm-handshake-test` passes on Test Scene 8). A truthful validation report will be written only after a real pass. _Marked invalid 2026-06-29 per build-plan update U2._
 
 ## Summary
 

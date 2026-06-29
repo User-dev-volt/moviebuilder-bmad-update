@@ -17,14 +17,15 @@ The user is handed off to the right specialist or workflow with enough context t
 | Visual style, color, lighting, lens, vocabulary | **Galadriel** — Cinematographer | Style Guide path, Vocabulary.md |
 | Continuity check, state validation, exit states | **Jonas** — Script Supervisor | Character files, previous exit state |
 | Prompt compilation, final AI video prompt | **Leonard** — Prompt Engineer | All three agent outputs (Showrunner + Cinematographer + Script Supervisor) |
-| Starting a new production from scratch | **cpm-inception** workflow | Nothing — this is the starting line |
-| Scaffolding a project folder without interview | **cpm-new-project** workflow | Project name, target model, shard duration |
+| Starting a new production from scratch (scaffold a project folder) | **cpm-new-project** workflow | Project name, target model, shard duration |
 | Creating/deepening the Show Bible | **cpm-show-bible** workflow | Project folder path |
 | Creating/deepening the Style Guide | **cpm-style-guide** workflow | Project folder path, Show Bible recommended first |
 | Creating a character file | **cpm-character-create** workflow | Project folder path |
 | Creating a scene brief | **cpm-scene-create** workflow | Project folder path, Show Bible |
 | Generating a shard prompt (Four-Agent Ritual) | **cpm-shard-generation** workflow | Full project context loaded via manifest |
 | Validating continuity across shards | **cpm-handshake-test** workflow | Two or more adjacent shard exit states |
+
+> **Note — guided onboarding (`cpm-inception`) is not yet available.** The conversational "interview" onboarding that generates a Show Bible + Style Guide + character sketches in one session is the **#13 capstone workflow, built last** (see `_bmad-output/cpm-build-plan-2026-06-28.md` §3). Until it ships, route a from-scratch production to **cpm-new-project** for scaffolding, then the individual foundation workflows. Do **not** route to `cpm-inception` — it does not exist yet. _(Descoped 2026-06-29 per build-plan update U3.)_
 
 ## Handoff Format
 
