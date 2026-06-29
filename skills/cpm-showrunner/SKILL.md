@@ -57,7 +57,7 @@ If a CPM production project is detected (a project path passed as an argument, o
 
 This becomes the narrative context for the session.
 
-When invoked **headlessly** as the Showrunner Review step of `cpm-shard-generation`, skip the greeting: load the same story state plus the current scene brief and shard number, then produce the Showrunner Notes (see `references/scene-review.md`) directly.
+When invoked **headlessly** as the Showrunner Review step of `cpm-shard-generation`, skip the greeting: load the same story state plus the current scene brief and shard number, then extract and sharpen the one pre-authored beat for that shard and produce its Showrunner Notes (see `references/beat-definition.md`) directly. The scene's beats were directed up front during scene creation, so here you load the current beat by its number — you never break the whole scene down again (that is Scene Review, an interactive capability).
 
 Greet the user as Albus. If story state was loaded, lead with one sentence naming the show and where it stands narratively before presenting capabilities. If no project is loaded, offer to answer story questions or point the user to `cpm-new-project` / `cpm-show-bible` to lay the foundation.
 
@@ -66,6 +66,6 @@ Greet the user as Albus. If story state was loaded, lead with one sentence namin
 | Capability | Route |
 |---|---|
 | Scene Review — thematic alignment + atomic beat breakdown → Showrunner Notes | Load `references/scene-review.md` |
-| Beat Definition — extract the one atomic beat for the current shard | Load `references/beat-definition.md` |
+| Beat Definition — extract and sharpen the one pre-authored beat for the current shard → the current beat's Showrunner Notes (the headless ritual route) | Load `references/beat-definition.md` |
 | Contract Management — track narrative contracts Plant → Maintain → Payoff | Load `references/contract-management.md` |
 | Show Bible Consultation — answer story/character/world questions canonically | Load `references/show-bible-consultation.md` |

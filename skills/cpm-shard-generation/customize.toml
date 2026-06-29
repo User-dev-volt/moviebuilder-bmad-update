@@ -1,0 +1,54 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for cpm-shard-generation.
+# Team overrides:     {project-root}/_bmad/custom/cpm-shard-generation.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-shard-generation.user.toml
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • arrays (persistent_facts, activation_steps_*): append
+#   arrays-of-tables with `code`/`id`: replace matching items, append new ones.
+
+# Steps to run before the standard activation (config load, project bind, route).
+# Overrides append. Use for pre-flight loads, compliance checks, etc.
+
+activation_steps_prepend = []
+
+# Steps to run after activation but before intent routing.
+# Overrides append. Use for context-heavy setup.
+
+activation_steps_append = []
+
+# Persistent facts the workflow keeps in mind for the whole run
+# (standards, conventions, guardrails). Overrides append.
+# Each entry is either a literal sentence or a `file:` reference.
+
+persistent_facts = []
+
+# Items executed when the workflow reaches its terminal stage, after the
+# shard's prompt and exit state have been delivered. Override wins.
+# Empty = no custom behavior.
+
+on_complete = []
+
+# --- Workflow-specific configurables ---
+#
+# The templates, the authority contract, and the choreography guide the
+# workflow lifts as it runs the Four-Agent Ritual. Bare paths resolve from the
+# skill root; {project-root}/... points at a project-scope location. Override wins.
+
+# Template for the compiled prompt (Output/Prompts/Scene_{XX}_Shard_{YY}_prompt.md).
+shard_prompt_template = "assets/shard-prompt.template.md"
+
+# Template for the exit state (Scene_{XX}/state/shard_{YY}_exit_state.md).
+exit_state_template = "assets/exit-state.template.md"
+
+# The authority doc: the ritual schema, the agent sequence, the State-Diff Gate
+# non-negotiables, the load-not-invent rule, and the two output schemas. Read first,
+# every run, by Generate, Regenerate, and Validate.
+shard_ritual_contract = "references/shard-ritual-contract.md"
+
+# Guide to calibrating 5s / 15s / 30s choreography density without splitting a beat
+# across shards. Loaded during compilation and when grading a longer shard.
+variable_interval_guide = "data/variable-interval-choreography-guide.md"

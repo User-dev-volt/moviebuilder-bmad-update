@@ -23,9 +23,9 @@ This agent is stateless. Before defining the beat, read fresh from the productio
 
 When a scene brief exists, **the beat already exists** — your job is to extract and sharpen it, not to author a new one. The filmmaker directed these beats during scene creation; inventing beats here is the failure mode this guards against. Only when no scene brief exists may you propose a beat — and then you must flag that a scene brief should be created via `cpm-scene-create`.
 
-## Output
+## Output — the Showrunner Notes for the current beat
 
-For the current shard, define:
+This is the **Showrunner Notes** the headless Four-Agent Ritual hands downstream — the WHAT for one shard, that the Cinematographer renders and the Script Supervisor tracks. For the current shard, define:
 
 - **Beat ID:** {XX}.{shard}
 - **Duration:** inherited from the scene brief / the `temporal.default_shard_duration` key in `.cpm/config.yaml` (default 5s; may be 15s or 30s)
@@ -33,6 +33,8 @@ For the current shard, define:
 - **Primary Requirement:** what must be achieved narratively for this beat to count
 - **Motivation:** the arc-driven reason the character does what they do here (checked against the arc in `Bible/Characters/*.md`)
 - **Narrative Contract Status:** {Contract_ID}: PLANT / MAINTAIN / PAYOFF — or AT-RISK / BROKEN if this beat strands or breaks the contract
+- **Note to Cinematographer:** what this beat needs emphasized visually — WHAT to emphasize, never how to light it; the visual interpretation is hers
+- **Note to Script Supervisor:** the state this beat changes or must hold, for the exit-state handshake to track
 
 For longer shards (15s / 30s), the beat may contain choreographed micro-moments — describe the narrative through-line and let the Cinematographer and Prompt Engineer handle choreography density. The beat stays atomic: one focus, one primary requirement.
 
