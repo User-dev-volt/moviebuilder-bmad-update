@@ -26,7 +26,7 @@ Foundation workflows #6–#9 DONE ✓ (built + adversarially verified + hardened
 ---
 
 ## Next Action
-**Foundation workflows #6–#9 are DONE** (built + adversarially verified + hardened, 2026-06-29 — see Session History). Next: build #10 `cpm-scene-create` — its design spec is ready at `skills/reports/scene-create-design-spec.md`; **resolve its 9 open questions (O1–O9) FIRST**, then build it before the core loop #11 `cpm-shard-generation`. Mirror the validated pattern-setter `skills/cpm-new-project` and apply R1–R6 (see Mental RAM). The locked workflow-skill format is proven across 4 skills now; no re-scout needed.
+**Foundation workflows #6–#9 are DONE** (built + adversarially verified + hardened, 2026-06-29 — see Session History). Next: **build #10 `cpm-scene-create`**. Its 9 design questions **O1–O9 are RESOLVED** (2026-06-29 — see `skills/reports/scene-create-design-spec.md` §16; key calls: **1 beat = 1 shard**, scene-create owns the manifest `### Scenes` block, entry_contract = seed-else-explicit-marked-stub, scene status finalizes to `ready`, Continuity Carry-Out optional, plain character names). **Build it directly, inline-SKILL.md like #6–#9** (the spec's §9/§14 `steps-c/e/v` are STALE — §16 supersedes), before the core loop #11 `cpm-shard-generation`. Mirror the validated pattern-setter `skills/cpm-new-project` and apply R1–R6. Format proven across 4 skills; no re-scout needed.
 
 ---
 
@@ -96,7 +96,7 @@ Foundation workflows #6–#9 DONE ✓ (built + adversarially verified + hardened
 - [x] cpm-show-bible (#7) ✓ — built + 3-lens verify + hardened (2026-06-29)
 - [x] cpm-style-guide (#8 — Fix A applied as natural in-world instruction) ✓ (2026-06-29)
 - [x] cpm-character-create (#9 — Fix B applied; template-boilerplate laterality false-PASS caught & fixed) ✓ (2026-06-29)
-- [ ] cpm-scene-create (#10 — ⚠ design spec READY at `skills/reports/scene-create-design-spec.md`; resolve O1–O9 first) ← NEXT
+- [ ] cpm-scene-create (#10 — design spec READY + **O1–O9 RESOLVED** (spec §16); build inline-SKILL.md like #6–#9) ← NEXT
 - [ ] cpm-shard-generation (#11 — apply Fix C2 + variable intervals; the core loop)
 - [ ] cpm-handshake-test (#12)
 - [ ] cpm-inception (#13 — build last — wraps #6–#9)
