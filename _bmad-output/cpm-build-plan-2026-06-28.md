@@ -122,15 +122,19 @@ Total: a real module build, but **de-risked** — design done, personas written,
 
 ## 7. Decisions (resolved 2026-06-29)
 
-1. **Build execution** — ⏸ **Plan only this session.** Resume building next session.
+1. **Build execution** — ▶ **Building underway.** P0 + the full agent layer (5 skills) built + verified 2026-06-29; the workflow phase is next.
 2. **`cpm-inception` scope** — ✅ **Keep as the #13 capstone** (per the plan's roadmap).
 3. **`bmm` module** — ✅ **Removed.** Install is now `core` + `bmb` (+ future `cpm`); skills 51 → 18. (commit `866914b`)
+4. **Agent format** — ✅ **Stateless lean SKILL.md** (SKILL.md + customize.toml + references/), not BOND/CREED sanctum. Mirror `skills/cpm-orchestrator` / `skills/cpm-showrunner`.
+5. **Manifest ownership** — ✅ `cpm-new-project` scaffolds `.cpm/manifest.md`; **scene-create owns the `### Scenes` block**; Orchestrator + Script Supervisor own `### Active Scene Context`.
+6. **Contract ownership** — ✅ A *workflow* (scene-create) writes `Production/Contracts/*.md`; agents only report/flag (Albus encoded).
+7. **Workflow-skill format** — ✅ v2 producing-workflow = inline-SKILL.md named sections + `[workflow]` customize.toml + create/update/validate intent modes + `.memlog.md` (NOT the V1 `steps-c/e/v` folders). Detail locked in `Snapshot.md` Mental RAM.
 
 ## ▶ Resume here next session
 
 **Done 2026-06-29:** P0 resets (U2/U3/U5) ✅ · agent format confirmed = stateless lean SKILL.md (U6) ✅ · **P1 agent layer COMPLETE** — all 5 agents built + 5-lens adversarially verified + fixed + re-verified (#2–#5) ✅ · `cpm-scene-create` design spec written ✅.
 
-**Start at the build backlog (§3), workflow #6 — `cpm-new-project`.** Build with the **Workflow Builder** (`bmad-workflow-builder`), applying the six skill-quality pattern rules R1–R6 (recorded in `Snapshot.md` Mental RAM — every enforcing capability loads its authority doc; symmetric hard gates; a refusal slot; no build-jargon; precise nested config keys; no placeholders).
+**Start at the build backlog (§3), workflow #6 — `cpm-new-project`.** Build with the **Workflow Builder** (`bmad-workflow-builder`), applying the six skill-quality pattern rules R1–R6 (recorded in `Snapshot.md` Mental RAM — every enforcing capability loads its authority doc; symmetric hard gates; a refusal slot; no build-jargon; precise nested config keys; no placeholders). The **workflow-skill format is already locked** and the **manifest/contract conventions are pinned** (2026-06-29 — see §7 above and `Snapshot.md` Mental RAM); no re-scout needed — start building.
 
 1. #6 `cpm-new-project` → #7 `cpm-show-bible` → #8 `cpm-style-guide` (Fix A) → #9 `cpm-character-create` (Fix B). Each lifts its proven template from `'The Second Receipt'/`.
 2. #10 `cpm-scene-create` — the **design spec is ready** (`skills/reports/scene-create-design-spec.md`); **resolve its open questions O1–O9 first**, then build. Build it before #11.
