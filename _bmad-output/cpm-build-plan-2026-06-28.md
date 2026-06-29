@@ -2,7 +2,7 @@
 
 **Date:** 2026-06-28
 **Author:** Claude (Opus 4.8) — derived from the Ultracode comprehensiveness assessment + the existing `module-plan-cpm-v2.md`
-**Status of CPM today:** Designed and planned, **not built** (~12% of a real module). One of 13 skills exists.
+**Status of CPM today:** Agent layer COMPLETE (2026-06-29) — **5 of 13 skills built** (all 5 agents) + 5-lens adversarially verified. The 8 workflows remain; `cpm-scene-create` (#10) has a design spec.
 **Build platform:** BMB **v2.1.0** (installed 2026-06-28), BMAD Core **v6.9.0**. (`bmm` was removed per decision — install is core + bmb + future cpm.)
 
 ---
@@ -59,15 +59,15 @@ Order follows the plan's roadmap (dependencies first). Each is built with **BA**
 | # | Skill | Type | Method | Source material to lift | Non-negotiable | Status |
 |---|-------|------|--------|--------------------------|----------------|--------|
 | 1 | cpm-orchestrator | agent | — | — | Situational awareness; never executes the Ritual | ✅ Built (needs U3/U4) |
-| 2 | **cpm-showrunner** (Albus) | agent | BA | Plan §Skills + brief 3.1 + `'The Second Receipt'/.cpm/agents/showrunner.md` | Never approve a beat that breaks the Show Bible / a Contract | ⬜ Next |
-| 3 | cpm-cinematographer (Galadriel) | agent | BA | Plan + brief 3.2 + Receipt agent prompt | Exact hex codes; banned-word list absolute | ⬜ |
-| 4 | cpm-script-supervisor (Jonas) | agent | BA | Plan + brief 3.3 + Receipt agent prompt | Check state before any compile; actively **inject** missing state | ⬜ |
-| 5 | cpm-prompt-engineer (Leonard) | agent | BA | Plan + brief 3.4 + Receipt agent prompt | Critical features in first 25%; never compile without all 3 inputs | ⬜ |
+| 2 | **cpm-showrunner** (Albus) | agent | BA | Plan §Skills + brief 3.1 + `'The Second Receipt'/.cpm/agents/showrunner.md` | Never approve a beat that breaks the Show Bible / a Contract | ✅ Built + verified |
+| 3 | cpm-cinematographer (Galadriel) | agent | BA | Plan + brief 3.2 + Receipt agent prompt | Exact hex codes; banned-word list absolute | ✅ Built + verified |
+| 4 | cpm-script-supervisor (Jonas) | agent | BA | Plan + brief 3.3 + Receipt agent prompt | Check state before any compile; actively **inject** missing state | ✅ Built + verified |
+| 5 | cpm-prompt-engineer (Leonard) | agent | BA | Plan + brief 3.4 + Receipt agent prompt | Critical features in first 25%; never compile without all 3 inputs | ✅ Built + verified |
 | 6 | cpm-new-project | workflow | BW | Plan + brief 1.1–1.3 (dir structure, config.yaml, manifest.md) | Scaffolds the external state machine correctly | ⬜ |
 | 7 | cpm-show-bible | workflow | BW | Plan + brief 2.1 + `'The Second Receipt'/Bible/Show_Bible.md` (proven template) | Full narrative DNA; all sections | ⬜ |
 | 8 | cpm-style-guide | workflow | BW | Plan + brief 2.3 + Receipt `Style_Guide.md`, `Palette.md`, `Vocabulary.md` (proven) | **Fix A:** hint to read Show Bible first | ⬜ |
 | 9 | cpm-character-create | workflow | BW | Plan + brief 2.2 + Receipt character files (proven) | LEFT/RIGHT specificity; **Fix B:** new vs update clarity | ⬜ |
-| 10 | cpm-scene-create | workflow | BW | Plan §Skills (needs a design spec authored — none exists yet) | Beats authored up front (Fix C2) so Showrunner doesn't invent them | ⬜ ⚠ needs spec |
+| 10 | cpm-scene-create | workflow | BW | **Design spec written** → `skills/reports/scene-create-design-spec.md` (resolve its O1–O9 first) | Beats authored up front (Fix C2) so Showrunner doesn't invent them | ⬜ spec ready |
 | 11 | cpm-shard-generation | workflow | BW | Plan + **brief lines 636–694** (the 6-step ritual) + Receipt `exit_state` artifact | State-Diff **HALT** gate before compile; variable-interval support | ⬜ core |
 | 12 | cpm-handshake-test | workflow | BW | Plan + **brief lines 698–741** (5 criteria, 3-pass threshold) | The real definition-of-done; runnable, not prose | ⬜ |
 | 13 | cpm-inception | workflow | BW | Plan §Skills (wraps #6–9 into one guided interview) | Conversational, not form-like; "draft quality" output | ⬜ build last |
@@ -109,8 +109,8 @@ Definition-of-done that replaces the voided "PASSED 100%":
 
 | Phase | Work | Skills/Steps | Effort |
 |-------|------|--------------|--------|
-| **P0 — Reset signal** | Apply U2/U3/U5; confirm v2 agent format (U6) | docs + voiding records | **S** |
-| **P1 — 4 specialist agents** | BA ×4 | #2–5 | **L** (≈70% pre-written) |
+| **P0 — Reset signal** | Apply U2/U3/U5; confirm v2 agent format (U6) | docs + voiding records | ✅ DONE 2026-06-29 |
+| **P1 — 4 specialist agents** | BA ×4 | #2–5 | ✅ DONE 2026-06-29 (built + 5-lens verified) |
 | **P2 — Foundation workflows** | BW ×4 + author scene-create spec | #6–9 (+ #10 spec) | **L** |
 | **P3 — Core loop + validation** | BW ×2 + scene-create | #10, #11, #12 | **L** |
 | **P4 — Inception + orchestrator wiring** | BW ×1 + U4 | #13, orchestrator relocate/register | **M** |
@@ -128,13 +128,15 @@ Total: a real module build, but **de-risked** — design done, personas written,
 
 ## ▶ Resume here next session
 
-**Start at the build backlog (§3), skill #2 — `cpm-showrunner` (Albus).**
+**Done 2026-06-29:** P0 resets (U2/U3/U5) ✅ · agent format confirmed = stateless lean SKILL.md (U6) ✅ · **P1 agent layer COMPLETE** — all 5 agents built + 5-lens adversarially verified + fixed + re-verified (#2–#5) ✅ · `cpm-scene-create` design spec written ✅.
 
-1. Apply the P0 resets first (U2 void false records, U3 descope dead inception route, U5 fix CLAUDE.md) — small, clears the false "shipped" signal.
-2. Confirm the v2 agent file format against `_bmad/bmb/agents/*.md` (U6).
-3. Build `cpm-showrunner` via the **Agent Builder** (`bmad-agent-builder`), passing `skills/reports/module-plan-cpm-v2.md` §`cpm-showrunner` as the brief, with `'The Second Receipt'/.cpm/agents/showrunner.md` as source.
-4. Then continue down §3 in order. **Early flag:** #10 `cpm-scene-create` needs a design spec authored first (none exists) — do that before the core loop (#11).
-5. When all 13 skills exist → **Create Module (CM)** → **Validate Module (VM)** + 3-pass handshake on Test Scene 8.
+**Start at the build backlog (§3), workflow #6 — `cpm-new-project`.** Build with the **Workflow Builder** (`bmad-workflow-builder`), applying the six skill-quality pattern rules R1–R6 (recorded in `Snapshot.md` Mental RAM — every enforcing capability loads its authority doc; symmetric hard gates; a refusal slot; no build-jargon; precise nested config keys; no placeholders).
+
+1. #6 `cpm-new-project` → #7 `cpm-show-bible` → #8 `cpm-style-guide` (Fix A) → #9 `cpm-character-create` (Fix B). Each lifts its proven template from `'The Second Receipt'/`.
+2. #10 `cpm-scene-create` — the **design spec is ready** (`skills/reports/scene-create-design-spec.md`); **resolve its open questions O1–O9 first**, then build. Build it before #11.
+3. #11 `cpm-shard-generation` (Fix C2 + variable intervals; the core loop) → #12 `cpm-handshake-test` → #13 `cpm-inception` (last; wraps #6–#9).
+4. When all 13 skills exist → **Create Module (CM)** → **Validate Module (VM)** + 3-pass handshake on Test Scene 8.
+5. Also resolve the module-wide design Qs flagged in `Snapshot.md` Mental RAM (contract write-owner; manifest write-owner; agent activation prefix `/bmad-agent-cpm-*` vs `/cpm-*`).
 
 ---
 
