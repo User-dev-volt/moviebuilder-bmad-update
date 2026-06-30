@@ -26,7 +26,7 @@ REQUIRED_DIRS = [
     ".cpm", ".cpm/agents",
     "Bible", "Bible/Characters", "Bible/World",
     "Architecture",
-    "Production", "Production/Scenes", "Production/Contracts",
+    "Production", "Production/Scenes", "Production/Contracts", "Production/Validation",
     "Output", "Output/Prompts", "Output/Renders",
     "Diagrams",
 ]
@@ -71,7 +71,8 @@ class ScaffoldProjectTests(unittest.TestCase):
 
             # Empty leaf dirs carry a .gitkeep so the skeleton survives version control.
             for d in [".cpm/agents", "Bible/Characters", "Bible/World", "Architecture",
-                      "Production/Scenes", "Production/Contracts", "Output/Prompts", "Output/Renders"]:
+                      "Production/Scenes", "Production/Contracts", "Production/Validation",
+                      "Output/Prompts", "Output/Renders"]:
                 self.assertTrue((project / d / ".gitkeep").is_file(), f"missing .gitkeep in {d}")
 
             config = (project / ".cpm" / "config.yaml").read_text(encoding="utf-8")

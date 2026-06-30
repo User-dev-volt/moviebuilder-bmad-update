@@ -41,7 +41,7 @@ REQUIRED_DIRS = [
     ".cpm", ".cpm/agents",
     "Bible", "Bible/Characters", "Bible/World",
     "Architecture",
-    "Production", "Production/Scenes", "Production/Contracts",
+    "Production", "Production/Scenes", "Production/Contracts", "Production/Validation",
     "Output", "Output/Prompts", "Output/Renders",
     "Diagrams",
 ]

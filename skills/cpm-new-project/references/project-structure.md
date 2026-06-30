@@ -14,7 +14,8 @@ The required shape of a CPM production project — the external state machine. C
 ├── Architecture/
 ├── Production/
 │   ├── Scenes/
-│   └── Contracts/
+│   ├── Contracts/
+│   └── Validation/
 ├── Output/
 │   ├── Prompts/
 │   └── Renders/
