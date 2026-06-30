@@ -19,6 +19,13 @@ modules:
     repoUrl: https://github.com/bmad-code-org/bmad-builder
     channel: pinned
     sha: d54981a8ba3b990148256455ccf4e6c1cb4918f0
+  - name: cpm
+    version: 1.0.0
+    installDate: 2026-06-30
+    lastUpdated: 2026-06-30
+    source: local
+    npmPackage: null
+    repoUrl: null
 ides:
   - claude-code
   - gemini

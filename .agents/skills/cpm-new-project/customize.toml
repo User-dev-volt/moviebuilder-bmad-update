@@ -1,0 +1,54 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for cpm-new-project.
+# Team overrides:     {project-root}/_bmad/custom/cpm-new-project.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-new-project.user.toml
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • arrays (persistent_facts, activation_steps_*): append
+#   arrays-of-tables with `code`/`id`: replace matching items, append new ones.
+
+# Steps to run before the standard activation (config load, route).
+# Overrides append. Use for pre-flight loads, compliance checks, etc.
+
+activation_steps_prepend = []
+
+# Steps to run after activation but before intent routing.
+# Overrides append. Use for context-heavy setup.
+
+activation_steps_append = []
+
+# Persistent facts the workflow keeps in mind for the whole run
+# (standards, conventions, guardrails). Overrides append.
+# Each entry is either a literal sentence or a `file:` reference.
+
+persistent_facts = []
+
+# Items executed when the workflow reaches its terminal stage, after the
+# project has been delivered. Override wins. Empty = no custom behavior.
+
+on_complete = []
+
+# --- Workflow-specific configurables ---
+#
+# Templates the scaffold renders, the static methodology asset it places, and the
+# default base folder new projects are created under. Bare paths resolve from the
+# skill root; {project-root}/... points at a project-scope location. Override wins.
+
+# Template for .cpm/config.yaml (project config: model target, temporal, validation).
+config_template = "assets/config-template.yaml"
+
+# Template for the .cpm/manifest.md context-index skeleton.
+manifest_template = "assets/manifest-template.md"
+
+# Template for Production/Slate.md, the production status tracker.
+slate_template = "assets/slate-template.md"
+
+# Static CPM methodology diagram, placed at Diagrams/cpm-methodology.excalidraw.
+methodology_diagram = "assets/cpm-methodology.excalidraw"
+
+# Default base folder new production projects are created under. The project name
+# is joined to this unless the user supplies an explicit location.
+project_output_path = "{project-root}/_bmad-output/cpm-projects"

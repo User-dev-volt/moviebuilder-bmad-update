@@ -1,0 +1,49 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for cpm-show-bible.
+# Team overrides:     {project-root}/_bmad/custom/cpm-show-bible.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-show-bible.user.toml
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • arrays (persistent_facts, activation_steps_*): append
+#   arrays-of-tables with `code`/`id`: replace matching items, append new ones.
+
+# Steps to run before the standard activation (config load, route).
+# Overrides append. Use for pre-flight loads, compliance checks, etc.
+
+activation_steps_prepend = []
+
+# Steps to run after activation but before intent routing.
+# Overrides append. Use for context-heavy setup.
+
+activation_steps_append = []
+
+# Persistent facts the workflow keeps in mind for the whole run
+# (story standards, house conventions, guardrails). Overrides append.
+# Each entry is either a literal sentence or a `file:` reference.
+
+persistent_facts = []
+
+# Items executed when the workflow reaches its terminal stage, after the
+# Bible has been delivered. Override wins. Empty = no custom behavior.
+
+on_complete = []
+
+# --- Workflow-specific configurables ---
+#
+# The structural template the Bible is authored from, where the Bible lands
+# inside a production project, and the fallback base used when no project
+# scaffold is found. Bare paths resolve from the skill root; {project-root}/...
+# points at a project-scope location. Override wins.
+
+# Template the Show Bible is authored from (required sections + per-section shape).
+bible_template = "assets/show-bible-template.md"
+
+# Where the Bible lives inside a production project, relative to the project root.
+bible_relative_path = "Bible/Show_Bible.md"
+
+# Fallback base folder used only when no .cpm/ project scaffold is detected.
+# The project name and bible_relative_path are joined onto this.
+default_project_path = "{project-root}/_bmad-output/cpm-projects"

@@ -1,0 +1,50 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for cpm-handshake-test.
+# Team overrides:     {project-root}/_bmad/custom/cpm-handshake-test.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-handshake-test.user.toml
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • arrays (persistent_facts, activation_steps_*): append
+#   arrays-of-tables with `code`/`id`: replace matching items, append new ones.
+
+# Steps to run before the standard activation (config load, project bind, route).
+# Overrides append. Use for pre-flight loads, compliance checks, etc.
+
+activation_steps_prepend = []
+
+# Steps to run after activation but before capability routing.
+# Overrides append. Use for context-heavy setup.
+
+activation_steps_append = []
+
+# Persistent facts the workflow keeps in mind for the whole run
+# (standards, conventions, guardrails). Overrides append.
+# Each entry is either a literal sentence or a `file:` reference.
+
+persistent_facts = []
+
+# Items executed when the workflow reaches its terminal stage, after the
+# test report has been delivered. Override wins. Empty = no custom behavior.
+
+on_complete = []
+
+# --- Workflow-specific configurables ---
+#
+# The authority contract and the two report templates the workflow lifts as it
+# grades a boundary or runs the suite. Bare paths resolve from the skill root;
+# {project-root}/... points at a project-scope location. Override wins.
+
+# The authority doc: the five continuity criteria, the MUST-NOT-Show floor, the
+# by-hand grading method, and the three-consecutive-pass law. Read first, every
+# run, by both the Handshake Test Run and the Validation Suite.
+handshake_test_contract = "references/handshake-test-contract.md"
+
+# Template for a single-boundary test report (Production/Validation/Scene_{XX}_Shard_{N}_handshake.md).
+handshake_report_template = "assets/handshake-report.template.md"
+
+# Template for the scene-wide validation report carrying the three-consecutive-pass
+# verdict (Production/Validation/Scene_{XX}_validation_suite.md).
+validation_suite_report_template = "assets/validation-suite-report.template.md"

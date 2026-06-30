@@ -1,0 +1,91 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for cpm-inception.
+# Team overrides:     {project-root}/_bmad/custom/cpm-inception.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-inception.user.toml
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • arrays (persistent_facts, activation_steps_*): append
+#   arrays-of-tables with `code`/`id`: replace matching items, append new ones.
+
+# Steps to run before the standard activation (config load, route).
+# Overrides append. Use for pre-flight loads, compliance checks, etc.
+
+activation_steps_prepend = []
+
+# Steps to run after activation but before intent routing.
+# Overrides append. Use for context-heavy setup.
+
+activation_steps_append = []
+
+# Persistent facts the workflow keeps in mind for the whole run
+# (standards, conventions, guardrails). Overrides append.
+# Each entry is either a literal sentence or a `file:` reference.
+
+persistent_facts = []
+
+# Items executed when the workflow reaches its terminal stage, after the
+# draft foundation has been delivered. Override wins. Empty = no custom behavior.
+
+on_complete = []
+
+# --- Workflow-specific configurables ---
+#
+# Bare paths resolve from the skill root; {project-root}/... points at a
+# project-scope location. Override wins.
+
+# --- Sibling skills (the one deliberate cross-skill coupling: deterministic
+#     scaffolding and the refine-readiness check scripts). Each is a bare path
+#     that resolves from the skill root onto the sibling skill directory under
+#     the same skills root; if it is absent at runtime, glob the skills root
+#     for the named folder. ---
+
+# Single source of the project structure: scaffold_project.py, its
+# config/manifest/slate/methodology assets, and project-structure.md.
+new_project_skill = "../cpm-new-project"
+
+# Source of check_bible.py for the cross-skill refine-readiness gate in Validate.
+show_bible_skill = "../cpm-show-bible"
+
+# Source of check_style.py for the cross-skill refine-readiness gate in Validate.
+style_guide_skill = "../cpm-style-guide"
+
+# Source of check_character.py for the cross-skill refine-readiness gate in Validate.
+character_skill = "../cpm-character-create"
+
+# --- Inception's own lightweight DRAFT templates (kept self-contained per the
+#     draft contract: no sibling coupling for creative artifacts). ---
+
+# Draft Show Bible (Bible/Show_Bible.md, status: draft).
+bible_draft_template = "assets/show-bible-draft-template.md"
+
+# Draft master Style Guide (Architecture/Style_Guide.md, status: draft).
+style_guide_draft_template = "assets/style-guide-draft-template.md"
+
+# Draft color palette (Architecture/Palette.md) — exact hex mandatory.
+palette_draft_template = "assets/palette-draft-template.md"
+
+# Draft lens language (Architecture/Lens_Language.md).
+lens_language_draft_template = "assets/lens-language-draft-template.md"
+
+# Draft prompt vocabulary (Architecture/Vocabulary.md) — banned + required lists.
+vocabulary_draft_template = "assets/vocabulary-draft-template.md"
+
+# Draft character sketch (Bible/Characters/{Name}.md, Status: DRAFT).
+character_draft_template = "assets/character-draft-template.md"
+
+# Roster index (Bible/Characters/_index.md).
+character_index_template = "assets/character-index-template.md"
+
+# Note: the two "Read first" docs the workflow loads — references/vision-interview.md
+# (the six-movement question bank) and references/inception-draft-contract.md (the draft
+# floor) — are referenced by bare path from SKILL.md, not declared as configurable
+# scalars. They are skill-internal authority documents, not a customization surface, so
+# they are deliberately not overridable (mirrors how cpm-scene-create keeps its
+# scene-brief-contract a bare-path reference).
+
+# --- Default base folder new productions are created under. The project name is
+#     joined to this unless the user supplies an explicit location. ---
+default_project_path = "{project-root}/_bmad-output/cpm-projects"

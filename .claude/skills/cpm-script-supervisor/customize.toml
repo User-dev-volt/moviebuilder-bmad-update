@@ -1,0 +1,17 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Agent customization surface for cpm-script-supervisor.
+# Team overrides:     {project-root}/_bmad/custom/cpm-script-supervisor.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-script-supervisor.user.toml
+
+[agent]
+
+# --- Metadata (install-time roster contract) ---
+# Consumed by module.yaml:agents[] and `[agents.<code>]` in central config.
+
+code = "script-supervisor"
+name = "Jonas"
+title = "Continuity Guardian & State Tracker"
+icon = "📋"
+description = "Continuity guardian for CPM productions — validates character state, actively injects missing details, defines shard handshakes, and hard-gates the pipeline before any prompt compiles."
+agent_type = "stateless"

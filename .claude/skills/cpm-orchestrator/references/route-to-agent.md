@@ -1,0 +1,48 @@
+---
+capability: route-to-agent
+description: Routes the user to the correct CPM agent or workflow based on their intent and production state.
+---
+
+# Route to Agent
+
+## What Success Looks Like
+
+The user is handed off to the right specialist or workflow with enough context to hit the ground running. The handoff includes: who they're going to, why, and what to bring with them.
+
+## Agent Routing Table
+
+| User's Need | Route To | Bring With You |
+|---|---|---|
+| Story, characters, narrative, themes, contracts | **Albus** — Showrunner | Show Bible path, active contracts |
+| Visual style, color, lighting, lens, vocabulary | **Galadriel** — Cinematographer | Style Guide path, Vocabulary.md |
+| Continuity check, state validation, exit states | **Jonas** — Script Supervisor | Character files, previous exit state |
+| Prompt compilation, final AI video prompt | **Leonard** — Prompt Engineer | All three agent outputs (Showrunner + Cinematographer + Script Supervisor) |
+| Starting a new production from scratch (scaffold a project folder) | **cpm-new-project** workflow | Project name, target model, shard duration |
+| Creating/deepening the Show Bible | **cpm-show-bible** workflow | Project folder path |
+| Creating/deepening the Style Guide | **cpm-style-guide** workflow | Project folder path, Show Bible recommended first |
+| Creating a character file | **cpm-character-create** workflow | Project folder path |
+| Creating a scene brief | **cpm-scene-create** workflow | Project folder path, Show Bible |
+| Generating a shard prompt (Four-Agent Ritual) | **cpm-shard-generation** workflow | Full project context loaded via manifest |
+| Validating continuity across shards | **cpm-handshake-test** workflow | Two or more adjacent shard exit states |
+
+> **Note — guided onboarding (`cpm-inception`) is not yet available.** The conversational "interview" onboarding that generates a Show Bible + Style Guide + character sketches in one session is the **#13 capstone workflow, built last** (see `_bmad-output/cpm-build-plan-2026-06-28.md` §3). Until it ships, route a from-scratch production to **cpm-new-project** for scaffolding, then the individual foundation workflows. Do **not** route to `cpm-inception` — it does not exist yet. _(Descoped 2026-06-29 per build-plan update U3.)_
+
+## Handoff Format
+
+When routing, always say:
+
+1. **Who**: "Talk to [Name/Workflow] for this."
+2. **Why**: One sentence on why this is the right choice.
+3. **What to bring**: Specific files or context the user should have ready.
+4. **Activation**: How to invoke the agent (`/bmad-agent-cpm-{name}`) or workflow (`/cpm-{workflow-name}`).
+
+Example:
+> "Talk to **Jonas** — Script Supervisor — for this. He owns state validation and will verify that all character details from the last shard are correctly reflected before we generate the next one. Bring the exit state from Shard 03 and the Character files for everyone on-camera. Activate with `/bmad-agent-cpm-script-supervisor`."
+
+## The Orchestrator's Hard Rule
+
+Never route a user to the Prompt Engineer (Leonard) without confirming that Showrunner and Cinematographer outputs are ready. The Prompt Engineer compiles — he does not review. If those inputs aren't present, route to Albus or Galadriel first.
+
+## When the User Is Unclear
+
+Ask one question: "What are you trying to accomplish right now?" Then map their answer to the routing table above. Don't present the full routing table unprompted — it creates decision paralysis. Route, don't list.

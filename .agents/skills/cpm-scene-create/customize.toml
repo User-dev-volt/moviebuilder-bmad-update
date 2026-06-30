@@ -1,0 +1,52 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for cpm-scene-create.
+# Team overrides:     {project-root}/_bmad/custom/cpm-scene-create.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-scene-create.user.toml
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • arrays (persistent_facts, activation_steps_*): append
+#   arrays-of-tables with `code`/`id`: replace matching items, append new ones.
+
+# Steps to run before the standard activation (config load, route).
+# Overrides append. Use for pre-flight loads, compliance checks, etc.
+
+activation_steps_prepend = []
+
+# Steps to run after activation but before intent routing.
+# Overrides append. Use for context-heavy setup.
+
+activation_steps_append = []
+
+# Persistent facts the workflow keeps in mind for the whole run
+# (standards, conventions, guardrails). Overrides append.
+# Each entry is either a literal sentence or a `file:` reference.
+
+persistent_facts = []
+
+# Items executed when the workflow reaches its terminal stage, after the
+# scene brief has been delivered. Override wins. Empty = no custom behavior.
+
+on_complete = []
+
+# --- Workflow-specific configurables ---
+#
+# The templates and guides the workflow lifts when it authors a scene.
+# Bare paths resolve from the skill root; {project-root}/... points at a
+# project-scope location. Override wins.
+
+# Template for the scene brief (Production/Scenes/Scene_{XX}/scene-brief.md).
+scene_brief_template = "assets/scene-brief.template.md"
+
+# Template for the Shard 1 entry contract (Scene_{XX}/state/entry_contract.md).
+entry_contract_template = "assets/entry-contract.template.md"
+
+# Guide to writing concrete, checkable Primary Requirements and calibrating
+# beat duration (5/15/30s). Loaded while authoring, polishing, and validating.
+beat_specificity_guide = "data/beat-specificity-guide.md"
+
+# Reference for scene types, emotional-arc patterns, and narrative function.
+# Loaded while shaping a scene's spine before the beats are broken out.
+scene_structure_reference = "data/scene-structure-reference.md"

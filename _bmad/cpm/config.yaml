@@ -1,0 +1,7 @@
+# CPM Module Configuration
+# Cinematic Production Module v1.0.0
+# Per-production settings live in each project's .cpm/config.yaml;
+# these are the install-time defaults new productions fall back to.
+
+target_model: sora
+default_shard_duration: 5

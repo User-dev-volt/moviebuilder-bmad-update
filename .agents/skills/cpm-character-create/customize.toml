@@ -1,0 +1,45 @@
+# DO NOT EDIT -- overwritten on every update.
+#
+# Workflow customization surface for cpm-character-create.
+# Team overrides:     {project-root}/_bmad/custom/cpm-character-create.toml
+# Personal overrides: {project-root}/_bmad/custom/cpm-character-create.user.toml
+
+[workflow]
+
+# --- Configurable below. Overrides merge per BMad structural rules: ---
+#   scalars: override wins • arrays (persistent_facts, activation_steps_*): append
+#   arrays-of-tables with `code`/`id`: replace matching items, append new ones.
+
+# Steps to run before the standard activation (config load, route).
+# Overrides append. Use for pre-flight loads, compliance checks, etc.
+
+activation_steps_prepend = []
+
+# Steps to run after activation but before intent routing.
+# Overrides append. Use for context-heavy setup.
+
+activation_steps_append = []
+
+# Persistent facts the workflow keeps in mind for the whole run
+# (standards, conventions, guardrails). Overrides append.
+# Each entry is either a literal sentence or a `file:` reference.
+
+persistent_facts = []
+
+# Items executed when the workflow reaches its terminal stage, after the
+# character has been delivered. Override wins. Empty = no custom behavior.
+
+on_complete = []
+
+# --- Workflow-specific configurables ---
+#
+# The templates the workflow lifts when it writes a character and its roster.
+# Bare paths resolve from the skill root; {project-root}/... points at a
+# project-scope location. Override wins.
+
+# Template for an individual character state file (Bible/Characters/{Name}.md).
+character_template = "assets/character-template.md"
+
+# Template for the character roster index (Bible/Characters/_index.md), created
+# the first time a character is rostered in a production.
+index_template = "assets/character-index-template.md"
