@@ -8,7 +8,7 @@
 
 **Phase:** `CPM V2 Rebuild — Active (BMB v2.1.0 / Core v6.9.0 — stateless SKILL.md skills)`
 **Health:** `Active`
-**Last Touched:** `2026-06-29`
+**Last Touched:** `2026-06-30`
 
 ---
 
@@ -17,18 +17,16 @@
 ```
 CPM V2 rebuild on BMB v2.1.0 / Core v6.9.0. Agents are STATELESS lean SKILL.md skills
 (SKILL.md + customize.toml + references/ — NOT the BOND/CREED/PULSE sanctum form).
-AGENT LAYER COMPLETE ✓ — all 5 agents built + 5-lens adversarially verified + fixed + re-verified:
-Orson (orchestrator), Albus (showrunner), Galadriel (cinematographer),
-Jonas (script-supervisor), Leonard (prompt-engineer) — all in skills/.
-Foundation workflows #6–#9 DONE ✓. Workflows #10 cpm-scene-create, #11 cpm-shard-generation,
-#12 cpm-handshake-test DONE ✓ (each built + adversarially verified + hardened, 2026-06-29).
-Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided interview), then Create Module.
+AGENT LAYER COMPLETE ✓ — all 5 agents built + 5-lens adversarially verified + fixed + re-verified.
+WORKFLOW LAYER COMPLETE ✓ — all 8 workflows (#6–#13) built + adversarially verified + hardened + committed.
+#13 cpm-inception — the LAST workflow — DONE ✓ (committed 0e72853, 2026-06-30).
+13 of 13 skills built. Next: Phase 3 — Create Module (CM) on skills/ → Validate Module (VM) → register.
 ```
 
 ---
 
 ## Next Action
-1.
+**The build phase is COMPLETE — all 13 skills (5 agents + 8 workflows #6–#13) are built, adversarially verified, hardened, and committed.** Next: **Phase 3 — package the module.** Run `bmad-module-builder` **Create Module (CM)** on the `skills/` folder: it generates the registration layer (`module.yaml` with the agents roster lifted from each `customize.toml`; `module-help.csv` — one row per capability with menu codes / before-after ordering / gates / outputs; a `cpm-setup` skill; and the manifest registration that adds CPM to `_bmad/_config/manifest.yaml` + the `_config` CSVs). Then **Validate Module (VM)** — `validate-module.py {skills-folder}` (structure, `module.yaml` completeness, CSV integrity, roster↔`customize.toml` match) + an LLM quality pass. Read `.claude/skills/bmad-module-builder/references/{ideate,create,validate}-module.md` first. **Resolve these Create-Module-time open items during CM** (carried in Mental RAM): (c) agent activation prefix `/bmad-agent-cpm-*` vs `/cpm-*`; (d) add `Production/Validation/` to `cpm-new-project`'s `project-structure.md` (handshake-test #12 writes reports there); (e) the `{project-root}/_bmad/config.yaml` vs real `_bmad/core/config.yaml` series convention (verify the loader resolves it before "fixing"); (f) confirm the Orchestrator's `production-diagram.md` renders `Diagrams/production-flow.excalidraw` (inception's deferred per-project diagram lands here once scenes exist); (g) fix the STALE CLAUDE.md "Step-File Architecture Rules" (still documents the dead V1 steps-c/e/v model) — same cleanup class as the "Registering a New Module" rewrite.
 
 ---
 
@@ -44,13 +42,13 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
 - Use `bmad-agent-builder` skill (in `.claude/skills/`) to build each agent
 - Use `bmad-workflow-builder` skill for each workflow
 - Output goes to `skills/` folder per bmb config
-- After all 13 skills built → run `bmad-module-builder` Create Module (CM) to scaffold installable module
+- All 13 skills built ✓ → run `bmad-module-builder` Create Module (CM) to scaffold the installable module
 
 **V2 New Features vs V1:**
 - Variable Intervals (5s/15s/30s shards) — in shard-generation (#11 ✓) + prompt-engineer
-- Agentic Inception workflow (interview-based onboarding)
+- Agentic Inception workflow (interview-based onboarding) — #13 ✓
 - CPM Orchestrator (Orson) — BMAD Master pattern for routing
-- Excalidraw diagrams: static methodology (pre-built ✓) + per-project living diagram
+- Excalidraw diagrams: static methodology (pre-built ✓) + per-project living diagram (deferred named gap — renders once scenes exist)
 
 **V1 Fixes — ALL APPLIED ✓:**
 - Fix A ✓ (style-guide #8, in-world Show Bible hint), Fix B ✓ (character-create #9, new-vs-update status), Fix C2 ✓ (shard-generation #11 — loads scene-brief.md, extracts the current beat by integer; 1 beat = 1 shard)
@@ -71,13 +69,18 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
   - R6: no placeholders; only intentional runtime variables ({XX}, {Name}, {project-root}, etc.).
 - **Each skill built from:** plan brief (`module-plan-cpm-v2.md` §<skill>) + the proven artifact in `_bmad-output/cpm-projects/The Second Receipt/` (the proven-template source for everything — agent prompts in `.cpm/agents/`, Bible/Architecture/Production docs, exit states). NOTE: the proven Scene_01 `scene-brief.md` is V1-shape (`### Shard N`, no Beat Table) — narrative reference only, NOT the V2 structure #11 parses.
 - **P0 resets DONE:** voided `module-build-cpm.md` + `validation-report-cpm-2026-02-03.md`; descoped dead `cpm-inception` route from the orchestrator; rewrote CLAUDE.md "Registering a New Module" for v2.
-- **Module-wide design Qs:** RESOLVED 2026-06-29 → (a) `Production/Contracts/*.md` is written by a *workflow* (scene-create, when a beat plants/pays a contract); agents only report (Albus encoded). (b) `.cpm/manifest.md`: `cpm-new-project` scaffolds the skeleton; **scene-create owns the `### Scenes` registry block** (the proven manifest's own comment says so); Orchestrator + Script Supervisor own `### Active Scene Context` (and **#11 shard-generation writes it** on each generated shard). STILL DEFERRED → (c) agent activation prefix `/bmad-agent-cpm-*` vs `/cpm-*` → resolve at Create Module; (d) **#12 open Q:** add `Production/Validation/` to `cpm-new-project`'s `project-structure.md` at Create Module time (handshake-test writes its test reports there; new-project doesn't scaffold it yet — handshake-test creates the folder + names the gap at runtime); (e) **#12 open Q:** the whole series references `{project-root}/_bmad/config.yaml` but the real config is `_bmad/core/config.yaml` — a series-wide convention to normalize (verify whether the loader already resolves it before "fixing").
+- **Module-wide design Qs:** RESOLVED 2026-06-29 → (a) `Production/Contracts/*.md` is written by a *workflow* (scene-create, when a beat plants/pays a contract); agents only report (Albus encoded). (b) `.cpm/manifest.md`: `cpm-new-project` scaffolds the skeleton; **scene-create owns the `### Scenes` registry block** (the proven manifest's own comment says so); Orchestrator + Script Supervisor own `### Active Scene Context` (and **#11 shard-generation writes it** on each generated shard). STILL DEFERRED → see the Create-Module-time open items below.
 
-**Workflow-skill format — LOCKED 2026-06-29 (for building #6–#13):**
-- v2 workflows are **NOT** the V1 step-file folders (`steps-c/`/`steps-e/`/`steps-v/`). A v2 workflow skill = `skills/cpm-{workflow}/` with `SKILL.md` (the workflow written **inline as named sections** — descriptive names, never numbered prefixes) + `customize.toml` (`[workflow]` metadata block) + optional `references/` (carve out only if SKILL.md exceeds the token budget) + optional `scripts/` + `.memlog.md` (process memory) + optional `evals/cases.json`.
-- **Producing-workflow shape** (CPM workflows all produce a doc): facilitator persona (the operator is the expert); **intent modes create / update / validate** routed at activation (not deep branching); graceful degradation (each dependency names a fallback); working-state via `.memlog.md`; finalize distills the run; subagent polish + reviewer gate at the end. (#11 maps these to **generate / regenerate / validate**.)
+**Workflow-skill format — LOCKED 2026-06-29 (used to build #6–#13):**
+- v2 workflows are **NOT** the V1 step-file folders (`steps-c/`/`steps-e/`/`steps-v/`). A v2 workflow skill = `skills/cpm-{workflow}/` with `SKILL.md` (the workflow written **inline as named sections** — descriptive names, never numbered prefixes) + `customize.toml` (`[workflow]` metadata block) + optional `references/` + optional `assets/` + optional `data/` + optional `scripts/` + `.memlog.md` (process memory) + optional `evals/cases.json`.
+- **Producing-workflow shape** (CPM workflows all produce a doc): facilitator persona (the operator is the expert); **intent modes create / update / validate** routed at activation (not deep branching); graceful degradation (each dependency names a fallback); working-state via `.memlog.md`; finalize distills the run; subagent reviewer gate at the end. (#11 maps these to **generate / regenerate / validate**.)
 - Build via `bmad-workflow-builder`: scaffold with its `scripts/init_skill.py`, draft minimal-first, run on real input, then lint gate (`quick_validate.py` + `scan-path-standards.py` + `scan-scripts.py`). Authoritative refs: `.claude/skills/bmad-workflow-builder/references/{build-process,producing-workflow-patterns,working-state-patterns,skill-quality-principles}.md` + `assets/SKILL-template.md`. Apply R1–R6.
-- ⚠ **CLAUDE.md "Step-File Architecture Rules" is STALE** (it documents the V1 steps-c/e/v model) — fix it for v2 (same class of cleanup as the "Registering a New Module" fix).
+
+**2026-06-30 Session — Workflow #13 cpm-inception built (LAST workflow ✓; all 8 workflows + 5 agents now done):**
+- **cpm-inception = self-contained agentic onboarding**, NOT four full re-runs. ONE conversational vision interview (six movements: Pitch / Meaning / Shape / Look / Cast / Setup) → a single compressed draft pass. **Reuses `cpm-new-project`'s `scaffold_project.py`** (the one deliberate cross-skill call — single source of the project skeleton) and carries its OWN draft templates + `references/inception-draft-contract.md` for Bible/Style/Characters so it stays self-contained. Each draft is structurally valid against its foundation contract (so the dedicated workflow refines in place) + honestly marked `status: draft` / `**Status:** DRAFT` with a refine-pointer. Modes: **create / update / validate** with graceful resume (per-artifact skip, never clobber creative content; Phase 1 branches on the `.cpm/` *directory* — never `create` over an existing scaffold, repairs via `--mode update`). `validate_inception.py` = presence + draft-marker + scaffold (exit 0/1/2), 14 tests; Validate also runs the sibling `check_*.py` to prove refine-readiness. Committed `0e72853`.
+- **Diagram capability = NAMED NON-BLOCKING GAP** (no per-project `production-flow.excalidraw` at inception — no scenes exist yet to map; excalidraw gen is heavy/error-prone). The Orchestrator's Production Diagram renders `Diagrams/production-flow.excalidraw` once scene briefs exist.
+- **Create-Module-time open items (carry-forward to Phase 3):** (c) agent prefix `/bmad-agent-cpm-*` vs `/cpm-*`; (d) add `Production/Validation/` to `cpm-new-project`'s `project-structure.md` (handshake-test #12 writes reports there); (e) the `{project-root}/_bmad/config.yaml` vs real `_bmad/core/config.yaml` series convention — verify the loader resolves it before "fixing"; (f) confirm the Orchestrator's `production-diagram.md` writes `Diagrams/production-flow.excalidraw` (inception's deferred diagram lands here); (g) ⚠ STALE: CLAUDE.md "Step-File Architecture Rules" still documents the dead V1 steps-c/e/v model — fix for v2 (same cleanup class as the "Registering a New Module" rewrite).
+- ⚠ **Snapshot.md clobber recurrence:** for the 2nd time, the committed Next Action arrived corrupted to a bare "1." (baked into `16ce095`). A workflow subagent editing this file mid-run is the likely culprit. **Future Workflow prompts must explicitly forbid any agent from reading/writing `Snapshot.md`; always `git diff HEAD -- Snapshot.md` after a workflow before trusting it.**
 
 ---
 
@@ -90,7 +93,7 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
 - [x] cpm-script-supervisor (Jonas — Continuity Guardian) ✓ — `skills/cpm-script-supervisor/`
 - [x] cpm-prompt-engineer (Leonard Shelby — Prompt Compiler) ✓ — `skills/cpm-prompt-engineer/`
 
-### Phase 2: Workflows (build with bmad-workflow-builder)
+### Phase 2: Workflows — COMPLETE ✓ (all 8 built + adversarially verified + hardened + committed)
 - [x] cpm-new-project (#6) ✓ — pattern-setter; built + 4-lens adversarial verify + hardened (2026-06-29)
 - [x] cpm-show-bible (#7) ✓ — built + 3-lens verify + hardened (2026-06-29)
 - [x] cpm-style-guide (#8 — Fix A applied as natural in-world instruction) ✓ (2026-06-29)
@@ -98,9 +101,9 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
 - [x] cpm-scene-create (#10) ✓ — built + 4-lens adversarial verify + fix + round-trip (Scene_01 6 beats / Scene_02 3 beats both PASS); `validate_scene_brief.py` four-way-equality gate; 17 tests; lint-green; committed `bd85372` (2026-06-29)
 - [x] cpm-shard-generation (#11) ✓ — the Four-Agent Ritual core loop (generate/regenerate/validate); built via Workflow orchestration (engine → SKILL → 5-lens adversarial verify, converged round 1: 0 critical/high/med → DoD gate GREEN); `validate_shard.py` 8 structural checks + graceful V2/V1-brief degradation, 21 tests (incl. positive 15s+30s round-trips); proven Scene_01 Shard_1 round-trips, broken copy HOLDs; also fixed the Showrunner headless route (scene-review→beat-definition); committed `8861f3b` (2026-06-29)
 - [x] cpm-handshake-test (#12) ✓ — CREATE-ONLY continuity validation (Handshake Test Run + Validation Suite); built via Workflow orchestration (engine → SKILL → 5-lens adversarial verify → fix → DoD gate, converged round 1: ALL gates GREEN); 5 criteria + MUST-NOT-Show floor at equal hardness, 3-consecutive-pass law w/ insufficient-evidence case; `validate_handshake.py` token floor (hex/asset/hand/lens) + graceful finality degradation, 16 tests; lint-green; independently re-verified ALL GREEN; committed `686869a` (2026-06-29)
-- [ ] cpm-inception (#13 — build last — wraps #6–#9) ← NEXT
+- [x] cpm-inception (#13 — the LAST workflow) ✓ — self-contained agentic onboarding: one vision interview → draft foundation (reuses new-project's scaffold script; own draft templates/contract; create/update/validate + graceful resume; never-clobber proven byte-identical); built via Workflow orchestration (design-lock → build → 5-lens adversarial verify → fix/harden DoD gate GREEN); `validate_inception.py` (presence + draft-marker + scaffold, exit 0/1/2), 14 tests; all 3 lint gates green; independently re-verified ALL GREEN; diagram capability scoped as a named non-blocking gap; committed `0e72853` (2026-06-30)
 
-### Phase 3: Module Packaging
+### Phase 3: Module Packaging ← NEXT
 - [ ] Run bmad-module-builder Create Module (CM) on `skills/` folder
 - [ ] Validate module with bmad-module-builder Validate Module (VM)
 - [ ] Register CPM V2 in BMAD manifests + slash commands
@@ -127,6 +130,9 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
 | 2026-06-29 | Old V1 Session-History rows are HISTORY, not truth | The `_bmad/cpm/` "Moviebuilder" module they describe was never built; V2 lives in `skills/`. False records voided this session |
 | 2026-06-29 | Showrunner's headless ritual route = beat-definition (not scene-review) | In V2 the scene's beats are pre-authored by scene-create; the per-shard ritual must LOAD the one current beat (load-not-invent), never re-break the whole scene each shard. The scene-review route was stale V1 behavior; #11's adversarial review caught the seam, and beat-definition now emits the per-beat Showrunner Notes the crew consumes |
 | 2026-06-29 | `validation.*` keys are PROJECT config gates (`.cpm/config.yaml`), NOT workflow customizables | #12's adversarial review flagged `validation.require_style_compliance` as referenced-but-undeclared and proposed adding it to customize.toml. The fix verified against #11: `validation.*` (and `temporal.*`) are per-project `.cpm/config.yaml` gates the SKILL reads at runtime; #11 references them in prose but does NOT declare them in customize.toml. Correct fix = ground the key inline (name source + default), preserving the #11 mirror — not pollute customize.toml |
+| 2026-06-30 | cpm-inception is a self-contained ONE-PASS draft generator, NOT four full re-runs | The plan calls inception "draft quality / rapid start"; running the four full workflows would not be faster. It reuses new-project's scaffold script (single structure source) but carries its OWN draft templates + contract for Bible/Style/Characters to stay self-contained; each draft is structurally valid against its foundation contract so the dedicated workflow refines it in place |
+| 2026-06-30 | Inception's `validate` grades the DRAFT foundation only; a finalized artifact is past its gate | #13 verify flagged `validate_inception` false-HOLDing a promoted-to-final artifact. Fix kept `validate_inception.py` self-contained (REJECTED coupling it to the sibling `check_*.py`) and scoped the gate at the SKILL layer: a `status: final` artifact is graded by its dedicated workflow, not re-drafted here |
+| 2026-06-30 | Inception's per-project production-flow diagram = named non-blocking gap | No scenes exist yet at onboarding, so the diagram is near-empty and excalidraw gen is heavy/error-prone; the Orchestrator's Production Diagram renders it once scene briefs exist |
 
 ---
 
@@ -134,7 +140,8 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
 
 | Date | What I Did | Where I Left Off |
 |------|------------|------------------|
-| 2026-06-29 | **Workflow #12 `cpm-handshake-test` built + independently re-verified + committed** (`686869a`) via Workflow orchestration (engine → SKILL prose → 5 parallel adversarial lenses → bounded fix/gate loop; converged round 1, ALL gates GREEN). CREATE-ONLY continuity validation: a **Handshake Test Run** grades one adjacent boundary (Shard N→N+1) on the 5 criteria + the MUST-NOT-Show floor at equal hardness; a **Validation Suite** chains it under the 3-consecutive-pass law (3 PASS = VALIDATED; any FAIL or <3 testable boundaries = NOT VALIDATED with the gap named). 12 files; `validate_handshake.py` deterministic floor (token extraction hex/`[Asset:ID]`/RIGHT-LEFT/lens; identity+adjacency; entry-contract presence or final-shard `no_boundary`; signature-hex-in-B-lighting; exit 0/1/2; graceful finality degradation), 16 tests incl. every FAIL mode. Consumes #11's exit-state Entry Contract; generalizes the Script Supervisor's `handshake-review.md` (2-term → 5-criteria). I re-ran tests + all 3 lint gates myself (GREEN) and read every shipped file (R1–R6 confirmed). The fix agent correctly REJECTED a finding's false premise — kept `validation.*` project gates OUT of customize.toml (matching #11), grounding the key inline instead. Caveat: a build agent overstepped scope and clobbered this Snapshot's Next Action mid-run — restored. | Build #13 `cpm-inception` (the last workflow — wraps #6–#9), then Create Module |
+| 2026-06-30 | **Workflow #13 `cpm-inception` built + independently re-verified + committed** (`0e72853`) via Workflow orchestration (design-lock → build → 5 parallel adversarial lenses → fix/harden DoD gate; GREEN). The LAST workflow — agentic rapid-start onboarding: ONE conversational vision interview (6 movements) → a single compressed draft pass that reuses `cpm-new-project`'s `scaffold_project.py` (single source of the project skeleton) and drafts a Show Bible + Style Guide (4 Architecture files) + character sketch(es), each structurally valid against its foundation contract + honestly marked `status: draft`/`**Status:** DRAFT` with refine-pointers. create / update / validate with graceful resume (per-artifact skip, never clobber). 13 files; `validate_inception.py` (presence + draft-marker + scaffold, exit 0/1/2) + 14 tests; Validate also runs the sibling `check_*.py` to prove refine-readiness. 10 findings (1 high + 3 med + 6 low) all fixed; the fix agent correctly REJECTED a false-premise code fix (kept `validate_inception` self-contained, scoped the draft-gate at the SKILL layer) like #12. I re-ran 14/14 tests + all 3 lint gates myself (GREEN) and read the full SKILL.md (R1–R6 confirmed; diagram = named non-blocking gap). git confirms only `skills/cpm-inception/` changed; the canonical "The Second Receipt" project is byte-identical. NOTE: the committed Snapshot Next Action arrived corrupted ("1.") for the 2nd time — restored + added a guard note. | **Phase 3 — Create Module (CM)** on `skills/` (all 13 skills done), then Validate Module (VM) + register; resolve the carried Create-Module open items (c)–(g) |
+| 2026-06-29 | **Workflow #12 `cpm-handshake-test` built + independently re-verified + committed** (`686869a`) via Workflow orchestration (engine → SKILL prose → 5 parallel adversarial lenses → bounded fix/gate loop; converged round 1, ALL gates GREEN). CREATE-ONLY continuity validation: a **Handshake Test Run** grades one adjacent boundary (Shard N→N+1) on the 5 criteria + the MUST-NOT-Show floor at equal hardness; a **Validation Suite** chains it under the 3-consecutive-pass law (3 PASS = VALIDATED; any FAIL or <3 testable boundaries = NOT VALIDATED with the gap named). 12 files; `validate_handshake.py` deterministic floor (token extraction hex/`[Asset:ID]`/RIGHT-LEFT/lens; identity+adjacency; entry-contract presence or final-shard `no_boundary`; signature-hex-in-B-lighting; exit 0/1/2; graceful finality degradation), 16 tests incl. every FAIL mode. Consumes #11's exit-state Entry Contract; generalizes the Script Supervisor's `handshake-review.md` (2-term → 5-criteria). I re-ran tests + all 3 lint gates myself (GREEN) and read every shipped file (R1–R6 confirmed). The fix agent correctly REJECTED a finding's false premise — kept `validation.*` project gates OUT of customize.toml (matching #11), grounding the key inline instead. Caveat: a build agent overstepped scope and clobbered this Snapshot's Next Action mid-run — restored. | Build #13 `cpm-inception` (the last workflow), then Create Module |
 | 2026-06-29 | **Workflow #11 `cpm-shard-generation` built + adversarially verified + committed** (`8861f3b`) via Workflow orchestration (engine → SKILL → 5-lens adversarial verify → definition-of-done gate GREEN). The Four-Agent Ritual core loop: loads the current beat by integer from the V2 Beat Table (1 beat = 1 shard), drives the 4 agents headlessly, the State-Diff check is a hard structural HALT (no prompt / no state writes on FAILED), variable intervals 5/15/30s. 9 files; `validate_shard.py` (8 structural checks, graceful V2/V1-brief degradation, 21 tests incl. positive 15s+30s round-trips); proven Scene_01 Shard_1 round-trips, a broken copy HOLDs. Harden loop converged round 1 (0 critical/high/med); the determinism-script lens returned a junk stub, so I did its claim-match audit by hand (script ↔ SKILL claims all backed). My review caught + fixed a real cross-skill seam: the Showrunner headless route pointed at scene-review (whole-scene re-breakdown — stale V1); repointed it to beat-definition. | Build #12 `cpm-handshake-test` (CREATE-ONLY continuity validation; 3 passes = VALIDATED) |
 | 2026-06-29 | **Workflow #10 `cpm-scene-create` built + adversarially verified + committed** (`bd85372`) via Workflow orchestration (build core → wire SKILL → 4-lens verify → fix → final gate). 9 files mirroring #6–#9 (first skill with a `data/` guides folder); `validate_scene_brief.py` enforces the four-way equality (`shard_count == Beat-Table rows == Beat-Detail blocks == max(Beat)`) + contiguous Beat column; 17 tests green. Round-trip: canonical Scene_01 (6 beats) + Scene_02 (3 beats, O7 gap non-blocking) PASS; gate correctly HOLDs the untouched V1 proven brief. scene-create is the first workflow to write the manifest `### Scenes` block + Slate `## Scenes` table. | Build #11 `cpm-shard-generation` (core loop; Fix C2 + variable intervals) |
 | 2026-06-29 | **Foundation workflows #6–#9 built + adversarially verified + hardened** via Workflow orchestration: set the locked v2 pattern on #6 `cpm-new-project` (build → 4-lens verify → I hardened it: fallback in all 3 modes, `.gitkeep` durability, R4 "CPM V2"→"CPM" diagram fix, dropped build-time `.memlog.md`), then fanned out #7–#9 (build → 3-lens verify → fix) + a harden pass. All 4 lint-green, 35 unit tests, each independently re-verified ALL GREEN. Verify caught bugs lint can't: laterality template-boilerplate false-PASS, a non-existent `memlog set-complete` call, placeholder-hollow false-PASS. | Build #10 `cpm-scene-create` — resolve O1–O9 first; then #11–#13 |
@@ -165,11 +172,11 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
 
 - **Main Files (V2 — skills platform):**
   - Built agent skills: `skills/cpm-orchestrator/`, `skills/cpm-showrunner/`, `skills/cpm-cinematographer/`, `skills/cpm-script-supervisor/`, `skills/cpm-prompt-engineer/`
-  - Built workflow skills (#6–#12): `cpm-new-project`, `cpm-show-bible`, `cpm-style-guide`, `cpm-character-create`, `cpm-scene-create`, `cpm-shard-generation`, `cpm-handshake-test` — all under `skills/`
+  - Built workflow skills (#6–#13): `cpm-new-project`, `cpm-show-bible`, `cpm-style-guide`, `cpm-character-create`, `cpm-scene-create`, `cpm-shard-generation`, `cpm-handshake-test`, `cpm-inception` — all under `skills/`
   - Module plan (source of truth): `skills/reports/module-plan-cpm-v2.md`
   - Build plan / backlog: `_bmad-output/cpm-build-plan-2026-06-28.md`
   - scene-create design spec: `skills/reports/scene-create-design-spec.md`
-- **NOTE:** there is NO `_bmad/cpm/` module yet — it is created later by Create Module (CM). The old `.claude/commands/cpm-*.md` stubs are vestigial (see CLAUDE.md caveat). 7 of 8 workflows are built (#6–#12); #13 cpm-inception pending.
+- **NOTE:** there is NO `_bmad/cpm/` module yet — it is created later by Create Module (CM). The old `.claude/commands/cpm-*.md` stubs are vestigial (see CLAUDE.md caveat). ALL 8 workflows are built (#6–#13); the build phase is complete — next is Create Module.
 - **Test Project:** `_bmad-output/cpm-projects/The Second Receipt/`
   - Scene 01: `Production/Scenes/Scene_01/scene-brief.md` (V1-shape — narrative reference, not the V2 contract)
 - **Related Notes:**
@@ -186,7 +193,7 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
 > Reset 2026-06-29 to V2 reality (the old all-`[x]` list described the phantom `_bmad/cpm/` that was never built).
 - [x] Module plan written (`skills/reports/module-plan-cpm-v2.md`)
 - [x] Agent layer: all 5 agents built + 5-lens adversarially verified (2026-06-29)
-- [ ] 8 workflows built (#6–#13) — 7/8 done (#6–#12); NEXT is #13 (the last)
+- [x] 8 workflows built (#6–#13) — ALL 8 done, adversarially verified + committed (2026-06-30)
 - [ ] Module packaged via Create Module (module.yaml, module-help.csv, cpm-setup, manifest registration)
 - [ ] Module validated via Validate Module (validate-module.py + LLM quality pass)
 - [ ] Real handshake: Test Scene 8 generates with 3 consecutive passes = CPM VALIDATED
