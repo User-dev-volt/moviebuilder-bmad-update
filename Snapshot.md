@@ -27,7 +27,7 @@ MODULE PACKAGED ✓ — Create Module + Validate Module DONE (2026-06-30). `skil
 ---
 
 ## Next Action
-**CPM V2 is BUILT, VALIDATED, COMMITTED, and INSTALLED into this project.** All 13 skills are live and auto-discovered from `.claude/skills/` (`/cpm-orchestrator`, `/cpm-inception`, `/cpm-shard-generation`, …), registered in `_bmad/_config/` (skill-manifest +13, bmad-help +42, manifest.yaml module `cpm`) + `_bmad/cpm/` (config.yaml + module-help.csv), and mirrored to `.agents/skills/`. Folder-scoped — only in this project. ⚠ **Registration was done MANUALLY (deploy + registry rows), NOT via the generated `cpm-setup` skill — and `cpm-setup` must NOT be run here:** its merge scripts target `config.yaml`/`module-help.csv`, but this BMAD install uses `config.toml` + `_bmad/_config/*` manifests (the bmad-module-builder template is from a divergent BMAD lineage), and its legacy-cleanup would delete `_bmad/core/config.yaml`. The only thing that should refresh the registry is re-running the real BMAD installer. **NEXT = actually use CPM:** start a production with `/cpm-inception` (guided onboarding) or `/cpm-new-project`, author scenes/shards, then run the real end-to-end handshake (Completion Criteria #3: Scene 8, 3 consecutive passes = CPM VALIDATED). Create-Module open items (c)–(g) ALL RESOLVED this session.
+Await user answer: new project inception or existing project continuation — this determines whether to execute full vision interview (new) or targeted refinement workflow (existing).
 
 ---
 
