@@ -28,7 +28,7 @@ Next: #13 cpm-inception — the LAST workflow (wraps #6–#9 into one guided int
 ---
 
 ## Next Action
-**Workflows #6–#12 are DONE** (built + adversarially verified + hardened, 2026-06-29 — see Session History; #12 committed `686869a`). Next: **build #13 `cpm-inception`** — the LAST workflow. It wraps the four foundation workflows (#6 new-project → #7 show-bible → #8 style-guide → #9 character-create) into ONE conversational, interview-based onboarding that takes a filmmaker from nothing to a production-ready project skeleton + draft narrative DNA. Build it CONVERSATIONAL, not form-like — "draft quality" output the filmmaker refines later — and build it LAST because it orchestrates the others. Read `skills/reports/module-plan-cpm-v2.md` §cpm-inception (and the orchestrator's descoped-inception note in the Decision Log). Mirror the proven inline-SKILL pattern (#6–#12) + apply R1–R6; it calls the four foundation skills in sequence with graceful resume (skip a phase whose artifact already exists). Then **Phase 3: Create Module (CM)** on `skills/` → Validate Module (VM) → register in manifests. Format proven across 7 skills; no re-scout needed.
+1.
 
 ---
 
